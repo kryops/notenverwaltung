@@ -11,6 +11,25 @@ public class Kurs {
 	private String studiengangsleiter;
 	private List<Student> studenten;
 
+	
+	public Kurs(String kursname, int jahrgang, String studiengang) {
+		this.kursname = kursname;
+		this.jahrgang = jahrgang;
+		this.studiengang = studiengang;
+	}
+	
+	public void addStudent(Student student) {
+		studenten.add(student);
+		student.setKurs(this);
+	}
+	
+	public void removeStudent(Student student) {
+		studenten.remove(student);
+	}
+	
+	
+	
+	
 	//Getter und Setter
 	public String getKursname() {
 		return kursname;

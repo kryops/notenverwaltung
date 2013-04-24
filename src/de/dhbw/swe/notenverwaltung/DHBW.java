@@ -7,6 +7,19 @@ public class DHBW {
 	
 	private List<Kurs> kurse;
 
+	public DHBW(){
+		
+	}
+	
+	public void addKurs(Kurs kurs) {
+		kurse.add(kurs);
+	}
+	
+	public void removeKurs(Kurs kurs) {
+		kurse.remove(kurs);
+	}
+	
+	
 	//Getter und Setter
 	public List<Kurs> getKurse() {
 		return kurse;

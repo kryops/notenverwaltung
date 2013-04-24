@@ -38,6 +38,15 @@ public class Student {
 	private Kurs kurs;
 	
 	
+	
+	public Student(String vorname, String nachname, Date geburtsdatum, String geburtsort) {
+		this.vorname = vorname;
+		this.geburtsdatum = geburtsdatum;
+		this.geburtsort = geburtsort;
+	}
+	
+	
+	
 	//Getter und Setter
 	public String getVorname() {
 		return vorname;
