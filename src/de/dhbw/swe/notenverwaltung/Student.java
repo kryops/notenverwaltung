@@ -17,19 +17,19 @@ public class Student {
 	private String geburtsort;
 	private String email;
 	private String telefonnummer;
-	private Integer abiturjahrgang;
+	private int abiturjahrgang;
 	private String abiturort;
 	private double abiturnote;
 	
 	//Heimadresse
 	private String heimstrasse;
-	private Integer heimhausnummer;
-	private Integer heimpostleitzahl;
+	private int heimhausnummer;
+	private int heimpostleitzahl;
 	private String heimort;
 	//Studentenadresse
 	private String studentenstrasse;
-	private Integer studentenhausnummer;
-	private Integer studentenpostleitzahl;
+	private int studentenhausnummer;
+	private int studentenpostleitzahl;
 	private String studentenort;
 	
 	//Studiendaten
@@ -101,11 +101,11 @@ public class Student {
 	public void setTelefonnummer(String telefonnummer) {
 		this.telefonnummer = telefonnummer;
 	}
-	public Integer getAbiturjahrgang() {
+	public int getAbiturjahrgang() {
 		return abiturjahrgang;
 	}
 	
-	public void setAbiturjahrgang(Integer abiturjahrgang) {
+	public void setAbiturjahrgang(int abiturjahrgang) {
 		this.abiturjahrgang = abiturjahrgang;
 	}
 	public String getAbiturort() {
@@ -129,18 +129,18 @@ public class Student {
 	public void setHeimstrasse(String heimstrasse) {
 		this.heimstrasse = heimstrasse;
 	}
-	public Integer getHeimhausnummer() {
+	public int getHeimhausnummer() {
 		return heimhausnummer;
 	}
 	
-	public void setHeimhausnummer(Integer heimhausnummer) {
+	public void setHeimhausnummer(int heimhausnummer) {
 		this.heimhausnummer = heimhausnummer;
 	}
-	public Integer getHeimpostleitzahl() {
+	public int getHeimpostleitzahl() {
 		return heimpostleitzahl;
 	}
 	
-	public void setHeimpostleitzahl(Integer heimpostleitzahl) {
+	public void setHeimpostleitzahl(int heimpostleitzahl) {
 		this.heimpostleitzahl = heimpostleitzahl;
 	}
 	public String getHeimort() {
@@ -157,17 +157,17 @@ public class Student {
 	public void setStudentenstrasse(String studentenstrasse) {
 		this.studentenstrasse = studentenstrasse;
 	}
-	public Integer getStudentenhausnummer() {
+	public int getStudentenhausnummer() {
 		return studentenhausnummer;
 	}
 	
-	public void setStudentenhausnummer(Integer studentenhausnummer) {
+	public void setStudentenhausnummer(int studentenhausnummer) {
 		this.studentenhausnummer = studentenhausnummer;
 	}
-	public Integer getStudentenpostleitzahl() {
+	public int getStudentenpostleitzahl() {
 		return studentenpostleitzahl;
 	}
-	public void setStudentenpostleitzahl(Integer studentenpostleitzahl) {
+	public void setStudentenpostleitzahl(int studentenpostleitzahl) {
 		this.studentenpostleitzahl = studentenpostleitzahl;
 	}
 	public String getStudentenort() {
@@ -176,10 +176,10 @@ public class Student {
 	public void setStudentenort(String studentenort) {
 		this.studentenort = studentenort;
 	}
-	public Integer getMatrikelnummer() {
+	public int getMatrikelnummer() {
 		return matrikelnummer;
 	}
-	public void setMatrikelnummer(Integer matrikelnummer) {
+	public void setMatrikelnummer(int matrikelnummer) {
 		this.matrikelnummer = matrikelnummer;
 	}
 	public String getFirmenname() {
@@ -200,10 +200,10 @@ public class Student {
 	public void setStudiengang(String studiengang) {
 		this.studiengang = studiengang;
 	}
-	public Integer getJahrgang() {
+	public int getJahrgang() {
 		return jahrgang;
 	}
-	public void setJahrgang(Integer jahrgang) {
+	public void setJahrgang(int jahrgang) {
 		this.jahrgang = jahrgang;
 	}
 	public boolean isImmatrikuliert() {
@@ -223,6 +223,7 @@ public class Student {
 	}
 	public void setStudienplan(Studienplan studienplan) {
 		this.studienplan = studienplan;
+		studienplan.setStudent(this);
 	}
 	public Kurs getKurs() {
 		return kurs;
