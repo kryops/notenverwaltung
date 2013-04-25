@@ -1,5 +1,6 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DHBW {
@@ -8,6 +9,7 @@ public class DHBW {
 	private List<Kurs> kurse;
 
 	private DHBW(){
+		kurse = new ArrayList<Kurs>();
 	}
 	
 	public static DHBW getDHBW(){
@@ -21,12 +23,22 @@ public class DHBW {
 	
 	
 	public Student findStudentByMatrikelnummer(int matrikelnummer){
-		//TODO Michael
-		return student;
+		
+		for(Kurs k : kurse) {
+			for(Student s : k.getStudenten()) {
+				if(s.getMatrikelnummer() == matrikelnummer) {
+					return s;
+				}
+			}
+		}
+		
+		return null;
 	}
+	
 	
 	public void addKurs(Kurs kurs) {
 		kurse.add(kurs);
+		kurs.setDhbw(this);
 	}
 	
 	public void removeKurs(Kurs kurs) {
