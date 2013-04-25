@@ -18,6 +18,7 @@ public class Studienplan {
 		this.module = new ArrayList<Modul>();
 	}
 	
+	
 	public void addModul(Modul modul) {
 		module.add(modul);
 		modul.setStudienplan(this);
@@ -28,9 +29,16 @@ public class Studienplan {
 	}
 	
 	public Unit findUnitByName(String unitname){
-		//TODO MICHAEL 
 		
-		return unit;
+		for(Modul m : module) {
+			for(Unit u : m.getUnits()) {
+				if(u.getName().equals(unitname)) {
+					return u;
+				}
+			}
+		}
+		
+		return null;
 	}
 
 	//Getter und Setter
