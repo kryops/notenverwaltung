@@ -4,11 +4,25 @@ import java.util.List;
 
 public class DHBW {
 	
-	
+	private static DHBW dhbw;
 	private List<Kurs> kurse;
 
-	public DHBW(){
+	private DHBW(){
+	}
+	
+	public static DHBW getDHBW(){
 		
+		if(dhbw == null) {
+			dhbw = new DHBW();
+		}
+		
+		return dhbw;
+	}
+	
+	
+	public Student findStudentByMatrikelnummer(int matrikelnummer){
+		//TODO Michael
+		return student;
 	}
 	
 	public void addKurs(Kurs kurs) {

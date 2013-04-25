@@ -27,8 +27,13 @@ public class Studienplan {
 		module.remove(modul);
 	}
 	
-	
+	public Unit findUnitByName(String unitname){
+		//TODO MICHAEL 
+		
+		return unit;
+	}
 
+	//Getter und Setter
 	public String getName() {
 		return name;
 	}
