@@ -3,12 +3,12 @@ package de.dhbw.swe.notenverwaltung;
 public class Notenverwaltung {
 	
 	public void notenEintragen(Student student, Unit unit){
-		modulnoteBerechnen(unit.getModul());
+		unit.getModul().modulnoteBerechnen();
 		
 	}
 	
 	public void notenBearbeiten(Student student, Unit unit){
-		modulnoteBerechnen(unit.getModul());
+		unit.getModul().modulnoteBerechnen();
 		
 	}
 	

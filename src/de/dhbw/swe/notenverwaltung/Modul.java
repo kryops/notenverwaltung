@@ -35,9 +35,10 @@ public class Modul {
 	}
 	
 	
-	public int modulnoteBerechnen(Modul modul){
+	public int modulnoteBerechnen(){
 		//mehrere Units: modulnote = note*credits pro modul /gesamtcredits) 
 		//nur modul: modulnote = note 
+		//MICHAEL
 		
 		return modulnote;		
 	}
