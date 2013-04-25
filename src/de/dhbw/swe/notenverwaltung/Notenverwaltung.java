@@ -23,8 +23,19 @@ public class Notenverwaltung {
 	public void notenEintragen(int matrikelnummer, String unitname, double note){
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
-		Unit unit = student.getStudienplan().findUnitByName(unitname);
-		unit.setNote(note);	
+		
+		if (student == null){
+			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV028");			
+		}else{
+			Unit unit = student.getStudienplan().findUnitByName(unitname);
+			
+			if(unit == null){
+				System.out.println("Unit konnte im System nicht gefunden werden. Fehlercode: NV033");
+				
+			}else{
+				unit.setNote(note);	
+			}
+		}
 	}
 	
 	/**
@@ -59,7 +70,11 @@ public class Notenverwaltung {
 	public void notenAbfragen(int matrikelnummer, String unitname){
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
-		notenAusgabe(student, unitname);		
+		if (student == null){
+			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV063");			
+		}else{
+			notenAusgabe(student, unitname);		
+		}
 	}
 	
 	/**
@@ -71,31 +86,70 @@ public class Notenverwaltung {
 	 * @author Hanne Nobis
 	 */
 	public void notenAusgabe(Student student, String unitname){
-		System.out.print(student.getVorname() + student.getNachname() + student.getMatrikelnummer());
-		System.out.println(student.getStudienplan().findUnitByName(unitname).getNote());		
+		System.out.print("Student: " + student.getVorname() + student.getNachname() + ", " + student.getMatrikelnummer());
+		
+		if(student.getStudienplan().findUnitByName(unitname) == null){					//Unit existiert nicht
+			System.out.println("Unit konnte im System nicht gefunden werden. Fehlercode: NV080");		
+			
+		}else if(student.getStudienplan().findUnitByName(unitname).getNote() == 0){		//Note noch nicht erfasst
+			System.out.println("Zu dieser Unit wurde noch keine Note eingetragen. Fehlercode: NV082");	
+			
+		}else { //Note kann ausgegeben werden, Unterscheidung zwischen benotet und bestanden/nicht bestanden notwendig
+			
+			if(student.getStudienplan().findUnitByName(unitname).isBenotet()){ //Note wird so interpretiert, wie sie eingetragen wurde
+				System.out.println("Unit: " + unitname + "Benotung: " + student.getStudienplan().findUnitByName(unitname).getNote());
+			
+			}else{//Note wird als bestanden/nicht bestanden interpretiert: 1.0 bestanden, 5.0 nicht bestanden
+				
+				if(student.getStudienplan().findUnitByName(unitname).isBestanden()){
+					System.out.println("Unit: " + unitname + "Benotung: bestanden");
+									
+				}else{
+					System.out.println("Unit: " + unitname + "Benotung: nicht bestanden");
+				}
+			}
+		}
 	}
+	
+	
+	
+	
+	
 	
 	public void notenArchivieren(){
-		//TODO: archivieren
+		//TODO: Frage
 		
 	}
 	
-	public void notenLoeschen(){
-		//TODO:löschen
-		
+	public void notenLoeschen(int matrikelnummer){
+		//TODO: Frage
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		if(student.isImmatrikuliert() == false){
+			
+		}
 	}
-	
+	/**
+	 * Sofern das Studium beendet ist, soll die Bachelornote berechnet werden.
+	 * Dazu muss der Student immatrikuliert sein und alle Noten müssen im System eingetragen sein.
+	 * Wenn alle Noten im System eingetragen sind, ist die Variable "Studium abgeschlossen" true.
+	 * 
+	 * @param kurs
+	 * 
+	 * @author Hanne Nobis
+	 */
 	public void bachelornotenBerechnen(Kurs kurs){
-		//TODO: Bachelornote berechnen, Rechenvorgang im Student
-		
+		for(Student student : kurs.getStudenten()){
+			if(student.isStudiumAbgeschlossen() && student.isImmatrikuliert()){
+				System.out.print("Student: " + student.getVorname() + student.getNachname() +", " + student.getMatrikelnummer());
+				System.out.println(" Bachelornote:" + student.getBachelornote());				
+			}
+			else{
+				System.out.println("Bachelornote wurde nicht berechnet.");
+			}
+		}		
 	}
 	
-	public void modulnoteBerechnen(Modul modul){
-		//TODO:Rechenvorgang im Modul
-		//Info: Unterscheidung zwischen  a) bereits alle Credits eingetragen(--> Modulnote berechnen) 
-		//b) noch nicht alle Credits eingetragen
-		
-		
-	}
+	
 
 }
