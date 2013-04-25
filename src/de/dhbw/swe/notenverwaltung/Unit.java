@@ -71,7 +71,11 @@ public class Unit {
 	public void setPruefungsform(String pruefungsform) {
 		this.pruefungsform = pruefungsform;
 	}
-
+	
+	/**
+	 * @return Note der Unit; 0, wenn keine Note gesetzt wurde;
+	 * 		bei unbenoteten Units 1 für bestanden und 5 für nicht bestanden
+	 */
 	public double getNote() {
 		return note;
 	}
@@ -122,8 +126,14 @@ public class Unit {
 	public void setBestanden(boolean bestanden) {
 		this.bestanden = bestanden;
 		
-		if(this.modul != null) {
-			this.modul.modulnoteBerechnen();
+		// Auch bei unbenoteten Prüfungsleistungen eine Note eintragen, damit überprüft werden kann,
+		// ob überhaupt etwas eingetragen wurde
+		if(note == 0) {
+			note = bestanden ? 1 : 5;
+		}
+		
+		if(modul != null) {
+			modul.modulnoteBerechnen();
 		}
 	}
 	
