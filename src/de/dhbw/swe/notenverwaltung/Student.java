@@ -52,6 +52,7 @@ public class Student {
 		this.vorname = vorname;
 		this.geburtsdatum = geburtsdatum;
 		this.geburtsort = geburtsort;
+		this.setImmatrikuliert(true);
 	}
 	
 	private void bachelornoteBerechnen() {
