@@ -2,7 +2,14 @@ package de.dhbw.swe.notenverwaltung;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Beschreibt das Objekt "Kurs".
+ * Der Kurs liegt direkt unter der DHBW. 
+ * Er vereint mehrere Studenten.
+ * 
+ * @author Hanne Nobis
+ *
+ */
 public class Kurs {
 
 	private String kursname;
