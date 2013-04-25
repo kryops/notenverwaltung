@@ -11,6 +11,7 @@ public class Modul {
 	private int workload;
 	private int praesenz;
 	private int eigenstudium;
+	private int modulnote;
 	
 	private Studienplan studienplan;
 	private List<Unit> units;
@@ -29,6 +30,14 @@ public class Modul {
 	
 	public void removeUnit(Unit unit) {
 		units.remove(unit);
+	}
+	
+	
+	public int modulnoteBerechnen(Modul modul){
+		//mehrere Units: modulnote = note*credits pro modul /gesamtcredits) 
+		//nur modul: modulnote = note 
+		
+		return modulnote;		
 	}
 
 

@@ -45,6 +45,12 @@ public class Student {
 		this.geburtsort = geburtsort;
 	}
 	
+	public double bachelornote(){
+		//bachelornote = (für alle Module:(Credits*Modulnote))*0.8 +0.2*Bachelorarbeitsnote
+		return bachelornote;
+		
+	}
+	
 	
 	
 	//Getter und Setter
