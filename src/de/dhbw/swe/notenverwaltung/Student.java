@@ -39,7 +39,7 @@ public class Student {
 	private String studiengang;
 	private int jahrgang;
 	private boolean immatrikuliert;
-	private boolean bachelorArbeit = false;
+	private boolean bachelorArbeit;
 	private double bachelorArbeitNote;
 	private double bachelornote;
 	private Studienplan studienplan;
