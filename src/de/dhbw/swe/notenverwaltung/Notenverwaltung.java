@@ -2,13 +2,19 @@ package de.dhbw.swe.notenverwaltung;
 
 public class Notenverwaltung {
 	
-	public void notenEintragen(Student student, Unit unit){
-		unit.getModul().modulnoteBerechnen();
+	
+	
+
+	public void notenEintragen(int matrikelnummer, String unitname, double note){
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		Unit unit = student.getStudienplan().findUnitByName(unitname);
+		unit.setNote(note);
+		
 		
 	}
 	
-	public void notenBearbeiten(Student student, Unit unit){
-		unit.getModul().modulnoteBerechnen();
+	public void notenBearbeiten(int matrikelnummer, String unitname){
 		
 	}
 	
