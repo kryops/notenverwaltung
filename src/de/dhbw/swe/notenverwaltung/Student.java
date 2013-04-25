@@ -27,11 +27,11 @@ public class Student {
 	private String studentenort;
 	
 	//Studiendaten
-	private Integer matrikelnummer;
+	private int matrikelnummer;
 	private String firmenname;
 	private String ausbildungsleiter;
 	private String studiengang;
-	private Integer jahrgang;
+	private int jahrgang;
 	private boolean immatrikuliert;
 	private double bachelornote;
 	private Studienplan studienplan;
