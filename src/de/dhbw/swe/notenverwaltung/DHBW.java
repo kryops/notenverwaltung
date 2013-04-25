@@ -43,8 +43,14 @@ public class DHBW {
 	}
 	
 	public Kurs findKursByName(String kursname){
-		//TODO Michael
-		return kurs;
+		
+		for(Kurs k : kurse) {
+			if(k.getKursname().equals(kursname)) {
+				return k;
+			}
+		}
+		
+		return null;
 	}
 	
 	
