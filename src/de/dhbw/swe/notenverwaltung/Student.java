@@ -1,5 +1,6 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.security.InvalidParameterException;
 import java.util.Date;
 /**
  * Beschreibt das Objekt "Student".
@@ -408,7 +409,12 @@ public class Student {
 	 * Bei 4 oder besser wird die Bachelorarbeit als bestanden markiert
 	 * @param bachelorArbeitNote
 	 */
-	public void setBachelorArbeitNote(double bachelorArbeitNote) {
+	public void setBachelorArbeitNote(double bachelorArbeitNote) throws InvalidParameterException {
+		
+		if(bachelorArbeitNote < 1 || bachelorArbeitNote > 5) {
+			throw new InvalidParameterException("Note außerhalb des gültigen Bereichs!");
+		}
+		
 		this.bachelorArbeitNote = bachelorArbeitNote;
 		
 		if(bachelorArbeitNote <= 4) {

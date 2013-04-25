@@ -1,5 +1,7 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.security.InvalidParameterException;
+
 /**
  * Units sind Modulen zugeordnet. Alle Noten des Studenten bis auf die der Bachelorarbeit werden
  * in den Units gespeichert.
@@ -86,8 +88,12 @@ public class Unit {
 	 * der Gesamtnote des Moduls angestoßen, zu welchem die Unit gehört
 	 * @param note
 	 */
-	public void setNote(double note) {
+	public void setNote(double note) throws InvalidParameterException {
 		this.note = note;
+		
+		if(note < 1 || note > 5) {
+			throw new InvalidParameterException("Note außerhalb des gültigen Bereichs!");
+		}
 		
 		if(note <= 4) {
 			this.bestanden = true;
