@@ -4,8 +4,9 @@ public class Unit {
 	
 	private String name;
 	private String pruefungsform;
-	private int note;
+	private double note;
 	private int gewichtung;
+	private boolean bestanden;
 	
 	private Modul modul;
 	
@@ -38,12 +39,20 @@ public class Unit {
 		this.pruefungsform = pruefungsform;
 	}
 
-	public int getNote() {
+	public double getNote() {
 		return note;
 	}
 
-	public void setNote(int note) {
+	public void setNote(double note) {
 		this.note = note;
+		
+		if(note <= 4) {
+			this.bestanden = true;
+			
+			if(this.modul != null) {
+				this.modul.modulnoteBerechnen();
+			}
+		}
 	}
 
 	public int getGewichtung() {
@@ -60,6 +69,14 @@ public class Unit {
 
 	public void setModul(Modul modul) {
 		this.modul = modul;
+	}
+
+	public boolean isBestanden() {
+		return bestanden;
+	}
+
+	public void setBestanden(boolean bestanden) {
+		this.bestanden = bestanden;
 	}
 	
 }

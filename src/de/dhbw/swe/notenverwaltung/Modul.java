@@ -8,11 +8,15 @@ public class Modul {
 	private String name;
 	private int credits;
 	private int semester;
+	
+	// TODO Fragen, was sie genau darunter versteht und wo wir das herbekommen
 	private int stunden;
 	private int workload;
+	
 	private int praesenz;
 	private int eigenstudium;
-	private int modulnote;
+	private double modulnote;
+	private boolean bestanden;
 	
 	private Studienplan studienplan;
 	private List<Unit> units;
@@ -35,12 +39,28 @@ public class Modul {
 	}
 	
 	
-	public int modulnoteBerechnen(){
-		//mehrere Units: modulnote = note*credits pro modul /gesamtcredits) 
-		//nur modul: modulnote = note 
-		//MICHAEL
+	public void modulnoteBerechnen() {
+		double note = 0;
 		
-		return modulnote;		
+		for(Unit u : units) {
+			
+			// Note nicht berechnen, wenn eine Unit nicht bestanden wurde
+			if(!u.isBestanden()) {
+				return;
+			}
+			
+			if(u.getGewichtung() > 0) {
+				note += u.getNote() * u.getGewichtung() / 100;
+			}
+			
+		}
+		
+		modulnote = note;
+		
+		if(modulnote <= 4) {
+			bestanden = true;
+		}
+		
 	}
 
 
@@ -133,5 +153,8 @@ public class Modul {
 		this.units = units;
 	}
 	
+	public boolean isBestanden() {
+		return bestanden;
+	}
 	
 }
