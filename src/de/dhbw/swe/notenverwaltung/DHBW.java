@@ -42,6 +42,11 @@ public class DHBW {
 		return null;
 	}
 	
+	public Kurs findKursByName(String kursname){
+		//TODO Michael
+		return kurs;
+	}
+	
 	
 	public void addKurs(Kurs kurs) {
 		kurse.add(kurs);
