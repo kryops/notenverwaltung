@@ -21,19 +21,58 @@ public class Notenverwaltung {
 	 * @author Hanne Nobis
 	 */
 	public void notenEintragen(int matrikelnummer, String unitname, double note){
-		//DONE Hanne
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		Unit unit = student.getStudienplan().findUnitByName(unitname);
 		unit.setNote(note);	
 	}
 	
-	
-	public void notenAbfragen(Kurs kurs, String unitname){
-		//Unit anhand des Namens finden	
+	/**
+	 * Zur Ausgabe der Noten eines ganzen Kurses.
+	 * Die Ausgabe geschieht durch die Funktion "notenAusgabe".
+	 * (Mangels einer grafischen Oberfläche, geschieht die Ausgabe in der Konsole.)
+	 * 
+	 * @param kursname
+	 * @param unitname
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void notenAbfragen(String kursname, String unitname){
+		DHBW dhbw = DHBW.getDHBW();
+		Kurs kurs = dhbw.findKursByName(kursname);
+		
+		for(Student student : kurs.getStudenten()){
+			notenAusgabe(student, unitname);
+		}
 	}
-	public void notenAbfragen(Student student, String unitname){
-		//Unit anhand des Namens finden	
+	
+	/**
+	 * Notenausgabe eines einzelnen Studenten. Dieser wird durch die Matrikelnummer eindeutig ausgewählt.
+	 * Die Funktion "notenAusgabe" übernimmt die Ausgabe.
+	 * (Mangels einer grafischen Oberfläche, geschieht die Ausgabe in der Konsole.)
+	 * 
+	 * @param matrikelnummer
+	 * @param unitname
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void notenAbfragen(int matrikelnummer, String unitname){
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		notenAusgabe(student, unitname);		
+	}
+	
+	/**
+	 * Die Note einer Unit werden in der Konsole (zusammen mit dem Vornamen, Nachnamen und der Matrikelnummer eines Studenten) ausgegeben.
+	 * 
+	 * @param student
+	 * @param unitname
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void notenAusgabe(Student student, String unitname){
+		System.out.print(student.getVorname() + student.getNachname() + student.getMatrikelnummer());
+		System.out.println(student.getStudienplan().findUnitByName(unitname).getNote());		
 	}
 	
 	public void notenArchivieren(){
