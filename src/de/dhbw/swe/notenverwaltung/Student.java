@@ -33,9 +33,12 @@ public class Student {
 	private String studiengang;
 	private int jahrgang;
 	private boolean immatrikuliert;
+	private boolean bachelorArbeit = false;
+	private double bachelorArbeitNote;
 	private double bachelornote;
 	private Studienplan studienplan;
 	private Kurs kurs;
+	private boolean studiumAbgeschlossen;
 	
 	
 	
@@ -45,10 +48,39 @@ public class Student {
 		this.geburtsort = geburtsort;
 	}
 	
-	public double bachelornote(){
-		//bachelornote = (für alle Module:(Credits*Modulnote))*0.8 +0.2*Bachelorarbeitsnote
-		return bachelornote;
+	private void bachelornoteBerechnen() {
 		
+		if(studienplan == null) {
+			return;
+		}
+		
+		if(!bachelorArbeit) {
+			return;
+		}
+		
+		// Module durchgehen und Schnitt ausrechnen
+		int creditSumme = 0;
+		double note = 0;
+		
+		for(Modul m : studienplan.getModule()) {
+			
+			if(!m.isBestanden()) {
+				return;
+			}
+			
+			if(m.isBenotet()) {
+				creditSumme += m.getCredits();
+				note += m.getModulnote() * m.getCredits();
+			}
+			
+		}
+		
+		// Module zählen 80%, Bachelorarbeit zählt 20%
+		note = note / creditSumme * 0.8;
+		note = note + bachelorArbeitNote * 0.2;
+		
+		bachelornote = note;
+		studiumAbgeschlossen = true;
 	}
 	
 	
@@ -209,9 +241,6 @@ public class Student {
 	public double getBachelornote() {
 		return bachelornote;
 	}
-	public void setBachelornote(double bachelornote) {
-		this.bachelornote = bachelornote;
-	}
 	public Studienplan getStudienplan() {
 		return studienplan;
 	}
@@ -225,7 +254,26 @@ public class Student {
 	public void setKurs(Kurs kurs) {
 		this.kurs = kurs;
 	}
+
+	public boolean isStudiumAbgeschlossen() {
+		
+		if(!studiumAbgeschlossen) {
+			bachelornoteBerechnen();
+		}
+		
+		return studiumAbgeschlossen;
+	}
 	
-	
+	public double getBachelorArbeitNote() {
+		return bachelorArbeitNote;
+	}
+
+	public void setBachelorArbeitNote(double bachelorArbeitNote) {
+		this.bachelorArbeitNote = bachelorArbeitNote;
+		
+		if(bachelorArbeitNote <= 4) {
+			bachelorArbeit = true;
+		}
+	}
 	
 }

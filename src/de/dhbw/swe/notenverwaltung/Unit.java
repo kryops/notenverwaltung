@@ -77,6 +77,10 @@ public class Unit {
 
 	public void setBestanden(boolean bestanden) {
 		this.bestanden = bestanden;
+		
+		if(this.modul != null) {
+			this.modul.modulnoteBerechnen();
+		}
 	}
 	
 }

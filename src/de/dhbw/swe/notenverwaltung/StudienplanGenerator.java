@@ -123,6 +123,7 @@ public class StudienplanGenerator {
 		modul.setCredits(20);
 		modul.setPraesenz(4);
 		modul.setEigenstudium(596);
+		modul.setBenotet(false);
 		
 		modul.addUnit(new Unit("Projektarbeit I", "Ablauf- und Reflexionsbericht, Projektarbeit", 100));
 		modul.addUnit(new Unit("Wissenschaftliches Arbeiten", "", 0));
@@ -350,6 +351,7 @@ public class StudienplanGenerator {
 		modul.setCredits(12);
 		modul.setPraesenz(6);
 		modul.setEigenstudium(354);
+		modul.setBenotet(false);
 		
 		modul.addUnit(new Unit("Bachelorarbeit", "Bachelorarbeit", 100));
 		

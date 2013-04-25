@@ -15,6 +15,8 @@ public class Modul {
 	
 	private int praesenz;
 	private int eigenstudium;
+	
+	private boolean benotet = true;
 	private double modulnote;
 	private boolean bestanden;
 	
@@ -40,27 +42,42 @@ public class Modul {
 	
 	
 	public void modulnoteBerechnen() {
-		double note = 0;
 		
-		for(Unit u : units) {
+		// benotetes Modul: Gewichteten Schnitt aus den Unitnoten bilden
+		if(isBenotet()) {
+		
+			double note = 0;
 			
-			// Note nicht berechnen, wenn eine Unit nicht bestanden wurde
-			if(!u.isBestanden()) {
-				return;
+			for(Unit u : units) {
+				
+				// Note nicht berechnen, wenn eine Unit nicht bestanden wurde
+				if(!u.isBestanden()) {
+					return;
+				}
+				
+				if(u.getGewichtung() > 0) {
+					note += u.getNote() * u.getGewichtung() / 100;
+				}
+				
 			}
 			
-			if(u.getGewichtung() > 0) {
-				note += u.getNote() * u.getGewichtung() / 100;
-			}
+			modulnote = note;
 			
+			if(modulnote <= 4) {
+				bestanden = true;
+			}
 		}
 		
-		modulnote = note;
-		
-		if(modulnote <= 4) {
+		// unbenotetes Modul: Units müssen nur bestanden sein
+		else {
+			for(Unit u : units) {
+				if(!u.isBestanden()) {
+					return;
+				}
+			}
+			
 			bestanden = true;
 		}
-		
 	}
 
 
@@ -155,6 +172,21 @@ public class Modul {
 	
 	public boolean isBestanden() {
 		return bestanden;
+	}
+
+
+	public boolean isBenotet() {
+		return benotet;
+	}
+
+
+	public void setBenotet(boolean benotet) {
+		this.benotet = benotet;
+	}
+	
+	
+	public double getModulnote() {
+		return modulnote;
 	}
 	
 }
