@@ -127,4 +127,12 @@ public class Unit {
 		}
 	}
 	
+	/**
+	 * Eine Unit gilt als benotete Prüfungsleistung, wenn eine Gewichtung größer 0 eingetragen wurde
+	 * @return
+	 */
+	public boolean isBenotet() {
+		return (gewichtung != 0);
+	}
+	
 }
