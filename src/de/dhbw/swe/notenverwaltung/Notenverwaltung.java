@@ -1,4 +1,7 @@
 package de.dhbw.swe.notenverwaltung;
+
+import java.security.InvalidParameterException;
+
 /**
  * Diese Klasse enthält alle Treiberfunktionen, die die Benotung der Studenten betrifft.
  * Dazu zählen auch die Berechnungen der Endnoten.
@@ -11,8 +14,9 @@ public class Notenverwaltung {
 	
 	
 	
-	/**
+	/** F20 : 
 	 * Diese Funktion kann Noten komplett neu eintragen und auch überschreiben.
+	 *
 	 * 
 	 * @param matrikelnummer 
 	 * @param unitname 
@@ -25,20 +29,28 @@ public class Notenverwaltung {
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		
 		if (student == null){
-			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV028");			
+			System.out.println("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer nicht korrekt. Fehlercode: NV028");
+			
 		}else{
 			Unit unit = student.getStudienplan().findUnitByName(unitname);
 			
 			if(unit == null){
-				System.out.println("Unit konnte im System nicht gefunden werden. Fehlercode: NV033");
+				System.out.println("Die Unit konnte im System nicht gefunden werden. Fehlercode: NV034");
 				
 			}else{
-				unit.setNote(note);	
+				try {
+					unit.setNote(note);	
+					System.out.println("Die Noten wurden erfolgreich eingetragen/geändert.");
+					
+				}catch(InvalidParameterException ipe){
+					System.out.println("Die Noten liegen nicht im gültigen Bereich. Fehlercode: NV043" + ipe.getMessage());
+					System.out.println("Bitte versuchen Sie es erneut.");
+				}				
 			}
 		}
 	}
 	
-	/**
+	/** F20 : 
 	 * Zur Ausgabe der Noten eines ganzen Kurses.
 	 * Die Ausgabe geschieht durch die Funktion "notenAusgabe".
 	 * (Mangels einer grafischen Oberfläche, geschieht die Ausgabe in der Konsole.)
@@ -52,12 +64,22 @@ public class Notenverwaltung {
 		DHBW dhbw = DHBW.getDHBW();
 		Kurs kurs = dhbw.findKursByName(kursname);
 		
-		for(Student student : kurs.getStudenten()){
-			notenAusgabe(student, unitname);
+		if(kurs == null){
+			System.out.println("Der Kurs konnte im System nicht gefunden werden. Fehlercode: NV058");
+			
+		}else{
+			if(kurs.getStudenten().size() == 0){
+				System.out.println("Zu diesem Kurs konnten keine Studenten gefunden werden. Fehlercode: NV062");
+				
+			}else{
+				for(Student student : kurs.getStudenten()){
+					notenAusgabe(student, unitname);
+				}
+			}
 		}
 	}
 	
-	/**
+	/** F20 :
 	 * Notenausgabe eines einzelnen Studenten. Dieser wird durch die Matrikelnummer eindeutig ausgewählt.
 	 * Die Funktion "notenAusgabe" übernimmt die Ausgabe.
 	 * (Mangels einer grafischen Oberfläche, geschieht die Ausgabe in der Konsole.)
@@ -70,14 +92,16 @@ public class Notenverwaltung {
 	public void notenAbfragen(int matrikelnummer, String unitname){
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		
 		if (student == null){
-			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV063");			
+			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV063");
+			
 		}else{
 			notenAusgabe(student, unitname);		
 		}
 	}
 	
-	/**
+	/** F20 :
 	 * Die Note einer Unit werden in der Konsole (zusammen mit dem Vornamen, Nachnamen und der Matrikelnummer eines Studenten) ausgegeben.
 	 * 
 	 * @param student
@@ -117,19 +141,19 @@ public class Notenverwaltung {
 	
 	
 	public void notenArchivieren(){
-		//TODO: Frage
+		//TODO: Frage F21
 		
 	}
 	
 	public void notenLoeschen(int matrikelnummer){
-		//TODO: Frage
+		//TODO: Frage F21
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		if(student.isImmatrikuliert() == false){
 			
 		}
 	}
-	/**
+	/** F22 :
 	 * Sofern das Studium beendet ist, soll die Bachelornote berechnet werden.
 	 * Dazu muss der Student immatrikuliert sein und alle Noten müssen im System eingetragen sein.
 	 * Wenn alle Noten im System eingetragen sind, ist die Variable "Studium abgeschlossen" true.
