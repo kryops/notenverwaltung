@@ -71,7 +71,11 @@ public class Unit {
 	public void setPruefungsform(String pruefungsform) {
 		this.pruefungsform = pruefungsform;
 	}
-
+	
+	/**
+	 * @return Note der Unit; 0, wenn keine Note gesetzt wurde;
+	 * 		bei unbenoteten Units 1 für bestanden und 5 für nicht bestanden
+	 */
 	public double getNote() {
 		return note;
 	}
