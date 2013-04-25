@@ -1,5 +1,6 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Modul {
@@ -19,6 +20,7 @@ public class Modul {
 	
 	public Modul(String name) {
 		this.name = name;
+		this.units = new ArrayList<Unit>();
 	}
 	
 	

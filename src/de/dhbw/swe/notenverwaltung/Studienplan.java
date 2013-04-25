@@ -1,5 +1,6 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Studienplan {
@@ -14,6 +15,7 @@ public class Studienplan {
 	public Studienplan(String name, String abschluss) {
 		this.name = name;
 		this.abschluss = abschluss;
+		this.module = new ArrayList<Modul>();
 	}
 	
 	public void addModul(Modul modul) {
