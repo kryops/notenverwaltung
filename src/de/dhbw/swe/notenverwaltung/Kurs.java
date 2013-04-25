@@ -1,5 +1,6 @@
 package de.dhbw.swe.notenverwaltung;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Kurs {
@@ -9,6 +10,8 @@ public class Kurs {
 	private String raum;
 	private String studiengang;
 	private String studiengangsleiter;
+	
+	private DHBW dhbw;
 	private List<Student> studenten;
 
 	
@@ -16,6 +19,8 @@ public class Kurs {
 		this.kursname = kursname;
 		this.jahrgang = jahrgang;
 		this.studiengang = studiengang;
+		
+		studenten = new ArrayList<Student>();
 	}
 	
 	public void addStudent(Student student) {
@@ -71,5 +76,13 @@ public class Kurs {
 	}
 	public void setStudenten(List<Student> studenten) {
 		this.studenten = studenten;
+	}
+
+	public DHBW getDhbw() {
+		return dhbw;
+	}
+
+	public void setDhbw(DHBW dhbw) {
+		this.dhbw = dhbw;
 	}
 }
