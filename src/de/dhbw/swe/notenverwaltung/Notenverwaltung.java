@@ -1,22 +1,33 @@
 package de.dhbw.swe.notenverwaltung;
-
+/**
+ * Diese Klasse enthält alle Treiberfunktionen, die die Benotung der Studenten betrifft.
+ * Dazu zählen auch die Berechnungen der Endnoten.
+ * 
+ * Funktionen: Noten eintragen, bearbeiten, abfragen, archivieren, löschen, Bachelornote berechnen
+ * 
+ * @author Hanne Nobis
+ */
 public class Notenverwaltung {
 	
 	
 	
-
+	/**
+	 * Diese Funktion kann Noten komplett neu eintragen und auch überschreiben.
+	 * 
+	 * @param matrikelnummer 
+	 * @param unitname 
+	 * @param note 
+	 * 
+	 * @author Hanne Nobis
+	 */
 	public void notenEintragen(int matrikelnummer, String unitname, double note){
+		//DONE Hanne
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		Unit unit = student.getStudienplan().findUnitByName(unitname);
-		unit.setNote(note);
-		
-		
+		unit.setNote(note);	
 	}
 	
-	public void notenBearbeiten(int matrikelnummer, String unitname){
-		
-	}
 	
 	public void notenAbfragen(Kurs kurs, String unitname){
 		//Unit anhand des Namens finden	

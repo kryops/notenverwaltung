@@ -1,7 +1,14 @@
 package de.dhbw.swe.notenverwaltung;
 
 import java.util.List;
-
+/**
+ * Die DHBW ist der Hierarchiekopf.
+ * Sie besitzt nur 1 Objekt, welches mit der Funktion "getDHBW" aufgerufen werden kann und vereint alle Kurse unter sich. 
+ * (Indirekt also auch alle Studenten.)
+ * 
+ * @author Hanne Nobis
+ *
+ */
 public class DHBW {
 	
 	private static DHBW dhbw;

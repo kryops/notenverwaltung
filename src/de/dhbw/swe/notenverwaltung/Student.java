@@ -1,7 +1,13 @@
 package de.dhbw.swe.notenverwaltung;
 
 import java.util.Date;
-
+/**
+ * Beschreibt das Objekt "Student".
+ * In der Hierarchie liegt der Student direkt unter dem Kurs.
+ * Er hat einen persönlichen Studienplan, in dem nicht nur die Modul-, sondern auch die Noten für Units eingetragen werden.
+ * 
+ * @author Hanne Nobis
+ */
 public class Student {
 	
 	//Stammdaten
