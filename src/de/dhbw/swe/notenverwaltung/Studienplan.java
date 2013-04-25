@@ -3,12 +3,23 @@ package de.dhbw.swe.notenverwaltung;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Ein Studienplan ist einem Studenten zugeordnet und besitzt eine Liste von Modulen
+ * 
+ * @author Michael Strobel
+ *
+ */
 public class Studienplan {
 	
 	private String name;
 	private String abschluss;
 	
+	/**
+	 * Student, zu welchem der Studienplan gehört
+	 * Wird beim Hinzufügen des Studienplans zum Studenten automatisch gesetzt
+	 */
 	private Student student;
+	
 	private List<Modul> module;
 	
 	
@@ -19,15 +30,28 @@ public class Studienplan {
 	}
 	
 	
+	/**
+	 * Fügt ein Modul hinzu und setzt dessen Verbindung zum Studienplan
+	 * @param modul
+	 */
 	public void addModul(Modul modul) {
 		module.add(modul);
 		modul.setStudienplan(this);
 	}
 	
+	/**
+	 * Entfernt ein Modul aus der Liste
+	 * @param modul
+	 */
 	public void removeModul(Modul modul) {
 		module.remove(modul);
 	}
 	
+	/**
+	 * Sucht eine Unit anhand ihres Namens
+	 * @param unitname
+	 * @return gesuchte Unit; null, wenn die Unit nicht gefunden wurde
+	 */
 	public Unit findUnitByName(String unitname){
 		
 		for(Modul m : module) {
@@ -42,6 +66,7 @@ public class Studienplan {
 	}
 
 	//Getter und Setter
+	
 	public String getName() {
 		return name;
 	}
@@ -66,6 +91,7 @@ public class Studienplan {
 		return student;
 	}
 
+	
 	public void setStudent(Student student) {
 		this.student = student;
 	}

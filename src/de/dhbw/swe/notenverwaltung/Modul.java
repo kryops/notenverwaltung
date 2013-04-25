@@ -3,6 +3,12 @@ package de.dhbw.swe.notenverwaltung;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Module sind einem Studienplan zugeordnet und besitzen eine Liste mit Units
+ * 
+ * @author Michael Strobel
+ *
+ */
 public class Modul {
 	
 	private String name;
@@ -16,11 +22,30 @@ public class Modul {
 	private int praesenz;
 	private int eigenstudium;
 	
+	/**
+	 * Ist ein Modul nicht benotet, werden Note und Credits nicht in die Berechnung
+	 * der Bachelornote mit einbezogen
+	 */
 	private boolean benotet = true;
+	
+	/**
+	 * Gesamtnote des Moduls
+	 * Wird automatisch berechnet, sobald alle Units als bestanden markiert wurden
+	 */
 	private double modulnote;
+	
+	/**
+	 * Modul wurde bestanden
+	 * Wird automatisch gesetzt, wenn die Gesamtmodulnote als 4 oder besser berechnet wurde
+	 */
 	private boolean bestanden;
 	
+	/**
+	 * Der Studienplan, zu welchem das Modul gehört
+	 * Wird automatisch gesetzt, wenn das Modul zum Studienplan hinzugefügt wird
+	 */
 	private Studienplan studienplan;
+	
 	private List<Unit> units;
 	
 	
@@ -29,18 +54,30 @@ public class Modul {
 		this.units = new ArrayList<Unit>();
 	}
 	
-	
+	/**
+	 * Fügt eine Unit zum Modul hinzu und setzt dessen Verbindung zum Modul
+	 * @param unit
+	 */
 	public void addUnit(Unit unit) {
 		units.add(unit);
 		unit.setModul(this);
 	}
 	
-	
+	/**
+	 * Entfernt eine Unit aus der Liste
+	 * @param unit
+	 */
 	public void removeUnit(Unit unit) {
 		units.remove(unit);
 	}
 	
-	
+	/**
+	 * Berechnet die Modulnote
+	 * Wird automatisch beim Bestehen einer Unit oder beim Ändern ihrer Note angestoßen
+	 * Markiert das Modul bei einer Note von 4 oder besser als bestanden, wenn alle Units bestanden werden
+	 * Bei unbenoteten Modulen wird nur überprüft, ob alle Units bestanden wurden und dann das Modul
+	 * ebenfalls als bestanden markiert
+	 */
 	public void modulnoteBerechnen() {
 		
 		// benotetes Modul: Gewichteten Schnitt aus den Unitnoten bilden
