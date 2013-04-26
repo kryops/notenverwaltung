@@ -86,7 +86,8 @@ public class Unit {
 	 * Setzt die Note einer Unit
 	 * Ist sie 4 oder besser, wird die Unit als bestanden markiert und die Berechnung
 	 * der Gesamtnote des Moduls angestoßen, zu welchem die Unit gehört
-	 * @param note
+	 * @param note Note zwischen 1 und 5
+	 * @throws InvalidParameterException Note außerhalb des gültigen Bereichs
 	 */
 	public void setNote(double note) throws InvalidParameterException {
 		this.note = note;

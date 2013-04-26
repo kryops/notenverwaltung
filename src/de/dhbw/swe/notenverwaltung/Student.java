@@ -407,7 +407,8 @@ public class Student {
 	/**
 	 * Setzt die Note der Bachelorarbeit
 	 * Bei 4 oder besser wird die Bachelorarbeit als bestanden markiert
-	 * @param bachelorArbeitNote
+	 * @param bachelorArbeitNote Note zwischen 1 und 5
+	 * @throws InvalidParameterException Note außerhalb des gültigen Bereichs
 	 */
 	public void setBachelorArbeitNote(double bachelorArbeitNote) throws InvalidParameterException {
 		
