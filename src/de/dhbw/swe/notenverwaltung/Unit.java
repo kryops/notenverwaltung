@@ -49,12 +49,15 @@ public class Unit {
 	 * Unit anlegen
 	 * @param name
 	 * @param pruefungsform
-	 * @param gewichtung 0 bei unbenoteten Units
+	 * @param gewichtung
+	 * 		zwischen 0 und 100
+	 * 		0 bei unbenoteten Units
+	 * @throws InvalidParameterException Gewichtung außerhalb des gültigen Bereichs
 	 */
 	public Unit(String name, String pruefungsform, int gewichtung) {
 		this.name = name;
 		this.pruefungsform = pruefungsform;
-		this.gewichtung = gewichtung;
+		setGewichtung(gewichtung);
 	}
 	
 	
@@ -89,7 +92,7 @@ public class Unit {
 	 * @param note Note zwischen 1 und 5
 	 * @throws InvalidParameterException Note außerhalb des gültigen Bereichs
 	 */
-	public void setNote(double note) throws InvalidParameterException {
+	public void setNote(double note) {
 		this.note = note;
 		
 		if(note < 1 || note > 5) {
@@ -108,8 +111,20 @@ public class Unit {
 	public int getGewichtung() {
 		return gewichtung;
 	}
-
+	
+	/**
+	 * Gewichtung setzen
+	 * @param gewichtung
+	 * 		zwischen 0 und 100
+	 * 		0 bei unbenoteten Units
+	 * @throws InvalidParameterException Gewichtung außerhalb des gültigen Bereichs
+	 */
 	public void setGewichtung(int gewichtung) {
+		
+		if(gewichtung < 0 || gewichtung > 100) {
+			throw new InvalidParameterException("Gewichtung außerhalb des gültigen Bereichs");
+		}
+		
 		this.gewichtung = gewichtung;
 	}
 
@@ -133,8 +148,10 @@ public class Unit {
 	public void setBestanden(boolean bestanden) {
 		this.bestanden = bestanden;
 		
-		// Auch bei unbenoteten Prüfungsleistungen eine Note eintragen, damit überprüft werden kann,
-		// ob überhaupt etwas eingetragen wurde
+		/*
+		 * Auch bei unbenoteten Prüfungsleistungen eine Note eintragen, damit überprüft werden kann,
+		 * ob überhaupt etwas eingetragen wurde
+		 */
 		if(note == 0) {
 			note = bestanden ? 1 : 5;
 		}

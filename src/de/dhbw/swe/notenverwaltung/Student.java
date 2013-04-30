@@ -410,7 +410,7 @@ public class Student {
 	 * @param bachelorArbeitNote Note zwischen 1 und 5
 	 * @throws InvalidParameterException Note außerhalb des gültigen Bereichs
 	 */
-	public void setBachelorArbeitNote(double bachelorArbeitNote) throws InvalidParameterException {
+	public void setBachelorArbeitNote(double bachelorArbeitNote) {
 		
 		if(bachelorArbeitNote < 1 || bachelorArbeitNote > 5) {
 			throw new InvalidParameterException("Note außerhalb des gültigen Bereichs!");
