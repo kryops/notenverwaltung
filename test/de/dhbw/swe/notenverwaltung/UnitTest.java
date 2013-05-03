@@ -122,7 +122,7 @@ public class UnitTest {
 	/**
 	 * Note eintragen
 	 * Normalfall: 2.5, 4.5
-	 * Grenzfälle: 1, 4, 4.5 und 5
+	 * Grenzfälle: 1, 4, 4.1 und 5
 	 * 
 	 */
 	@Test
