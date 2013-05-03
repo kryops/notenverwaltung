@@ -15,10 +15,6 @@ public class Modul {
 	private int credits;
 	private int semester;
 	
-	// TODO Fragen, was sie genau darunter versteht und wo wir das herbekommen
-	private int stunden;
-	private int workload;
-	
 	private int praesenz;
 	private int eigenstudium;
 	
@@ -147,24 +143,13 @@ public class Modul {
 		this.semester = semester;
 	}
 
-
-	public int getStunden() {
-		return stunden;
-	}
-
-
-	public void setStunden(int stunden) {
-		this.stunden = stunden;
-	}
-
-
+	/**
+	 * der Workload eines Moduls setzt sich zusammen
+	 * aus Präsenz und Eigenstudium
+	 * @return Präsenz + Eigenstudium
+	 */
 	public int getWorkload() {
-		return workload;
-	}
-
-
-	public void setWorkload(int workload) {
-		this.workload = workload;
+		return praesenz+eigenstudium;
 	}
 
 

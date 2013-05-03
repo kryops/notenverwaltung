@@ -226,4 +226,19 @@ public class ModulTest {
 		assertFalse(modul.isBestanden());
 	}
 	
+	
+	/**
+	 * Workload testen
+	 * Workload = Präsenzstudium + Eigenstudium
+	 */
+	@Test
+	public void testWorkload() {
+		Modul modul = new Modul("modul1");
+		
+		modul.setPraesenz(10);
+		modul.setEigenstudium(20);
+		
+		assertEquals(30, modul.getWorkload());
+	}
+	
 }
