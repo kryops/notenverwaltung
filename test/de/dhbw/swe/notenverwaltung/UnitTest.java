@@ -48,23 +48,35 @@ public class UnitTest {
 	}
 	
 	
+	/**
+	 * Konstruktor testen
+	 * Gewichtung über 100 - Fehlre
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testConstructorInvalidGewichtung() {
 		new Unit("name", "prüfungsform", 101);
 	}
 	
 	
+	/**
+	 * Konstruktor testen
+	 * Gewichtung negativ - Fehler
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testConstructorNegativeGewichtung() {
 		new Unit("name", "prüfungsform", -1);
 	}
 	
+	
 	/*
 	 * Tests der Setter und Getter mit zusätzlichen Aktionen
 	 */
 	
-	// Gewichtung
-	
+	/**
+	 * Gewichtung testen
+	 * Normalfall 50
+	 * Grenzfälle 100 und 0
+	 */
 	@Test
 	public void testGewichtung() {
 		Unit unit;
@@ -84,12 +96,21 @@ public class UnitTest {
 	}
 	
 	
+	/**
+	 * Gewichtung testen
+	 * über 100 - Fehler
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testGewichtungInvalid() {
 		Unit unit = new Unit("name");
 		unit.setGewichtung(101);
 	}
 	
+	
+	/**
+	 * Gewichtung testen
+	 * negativ - Fehler
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testGewichtungNegative() {
 		Unit unit = new Unit("name");
@@ -98,17 +119,28 @@ public class UnitTest {
 	
 	// Note
 	
+	/**
+	 * Note eintragen
+	 * Normalfall: 2.5, 4.5
+	 * Grenzfälle: 1, 4, 4.5 und 5
+	 * 
+	 */
 	@Test
 	public void testNote() {
 		Unit unit;
 		
-		// eine Note von 4 oder besser markiert die Unit als bestanden
 		unit = new Unit("name");
-		unit.setNote(4.1);
-		assertEquals(4.1, unit.getNote(), 0.01);
+		unit.setNote(2.5);
+		assertEquals(2.5, unit.getNote(), 0.01);
+		assertTrue(unit.isBestanden());
+		
+		// bei 4 oder schlechter ist die Unit nicht bestanden
+		unit = new Unit("name");
+		unit.setNote(4.5);
+		assertEquals(4.5, unit.getNote(), 0.01);
 		assertFalse(unit.isBestanden());
 		
-		// Grenzfälle
+		// Grenzfälle: 1, 4, 4.5 und 5
 		unit = new Unit("name");
 		unit.setNote(1);
 		assertEquals(1.0, unit.getNote(), 0.01);
@@ -120,27 +152,39 @@ public class UnitTest {
 		assertTrue(unit.isBestanden());
 		
 		unit = new Unit("name");
+		unit.setNote(4.1);
+		assertEquals(4.1, unit.getNote(), 0.01);
+		assertFalse(unit.isBestanden());
+		
+		unit = new Unit("name");
 		unit.setNote(5);
 		assertEquals(5.0, unit.getNote(), 0.01);
 		assertFalse(unit.isBestanden());
 	}
 	
-	
+	/**
+	 * Note eintragen
+	 * größer als 5 - Fehler
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testNoteTooHigh() {
 		Unit unit = new Unit("name");
 		unit.setNote(5.1);
 	}
 	
-	
+	/**
+	 * Note eintragen
+	 * kleiner als 1 - Fehler
+	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testNoteTooLow() {
 		Unit unit = new Unit("name");
 		unit.setNote(0.9);
 	}
 	
-	// bestanden
-	
+	/**
+	 * Bestanden-Funktionalität testen
+	 */
 	@Test
 	public void testBestanden() {
 		Unit unit;
@@ -161,6 +205,9 @@ public class UnitTest {
 	 * andere Funktionen
 	 */
 	
+	/**
+	 * Handelt es sich um eine benotete Unit?
+	 */
 	@Test
 	public void testIsBenotet() {
 		Unit unit;

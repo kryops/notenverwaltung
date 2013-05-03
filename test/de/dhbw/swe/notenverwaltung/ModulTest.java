@@ -14,6 +14,9 @@ import org.junit.Test;
  */
 public class ModulTest {
 	
+	/**
+	 * Konstruktor testen
+	 */
 	@Test
 	public void testConstructor() {
 		Modul modul;
@@ -24,6 +27,10 @@ public class ModulTest {
 	}
 	
 	
+	/**
+	 * Unit-Liste testen
+	 * Units hinzufügen und entfernen
+	 */
 	@Test
 	public void testUnitList() {
 		Modul modul = new Modul("name");
@@ -60,17 +67,16 @@ public class ModulTest {
 	}
 	
 	
+	/**
+	 * Modulnote berechnen
+	 * benotetes Modul - bestanden
+	 * Unit-Gewichtung 50:50
+	 */
 	@Test
-	public void testModulnoteBerechnen() {
-		
+	public void testModulnoteBerechnenBenotetBestanden50_50() {
 		Modul modul;
-		Unit unit1, unit2, unit3;
+		Unit unit1, unit2;
 		
-		/*
-		 * benotetes Modul - bestanden
-		 */
-		
-		// Gewichtung 50:50
 		modul = new Modul("name");
 		
 		unit1 = new Unit("unit1", "prüfungsform", 50);
@@ -84,8 +90,19 @@ public class ModulTest {
 		
 		assertEquals(2.5, modul.getModulnote(), 0.01);
 		assertTrue(modul.isBestanden());
+	}
+	
+	
+	/**
+	 * Modulnote berechnen
+	 * benotetes Modul - bestanden
+	 * Unit-Gewichtung 75,25,0 (eine unbenotete Unit)
+	 */
+	@Test
+	public void testModulnoteBerechnenBenotetBestanden75_25_0() {
+		Modul modul;
+		Unit unit1, unit2, unit3;
 		
-		// Gewichtung 75:25 + eine unbenotete Unit
 		modul = new Modul("name");
 		
 		unit1 = new Unit("unit1", "prüfungsform", 75);
@@ -102,13 +119,19 @@ public class ModulTest {
 		
 		assertEquals(2.25, modul.getModulnote(), 0.01);
 		assertTrue(modul.isBestanden());
+	}
+	
+	
+	/**
+	 * Modulnote berechnen
+	 * benotetes Modul - nicht bestanden
+	 * Unit-Gewichtung 50:50
+	 */
+	@Test
+	public void testModulnoteBerechnenBenotetDurchgefallen50_50() {
+		Modul modul;
+		Unit unit1, unit2;
 		
-		
-		/*
-		 * benotetes Modul - nicht bestanden
-		 */
-		
-		// benotete Unit
 		modul = new Modul("name");
 		
 		unit1 = new Unit("unit1", "prüfungsform", 50);
@@ -122,8 +145,19 @@ public class ModulTest {
 		
 		assertEquals(0, modul.getModulnote(), 0.01);
 		assertFalse(modul.isBestanden());
+	}
+	
+	
+	/**
+	 * Modulnote berechnen
+	 * benotetes Modul - nicht bestanden
+	 * Unit-Gewichtung 50:50
+	 */
+	@Test
+	public void testModulnoteBerechnenBenotetDurchgefallen75_25_0() {
+		Modul modul;
+		Unit unit1, unit2, unit3;
 		
-		// unbenotete Unit
 		modul = new Modul("name");
 		
 		unit1 = new Unit("unit1", "prüfungsform", 75);
@@ -140,11 +174,18 @@ public class ModulTest {
 		
 		assertEquals(0, modul.getModulnote(), 0.01);
 		assertFalse(modul.isBestanden());
+	}
+	
 		
+	/**
+	 * Modulnote berechnen
+	 * unbenotetes Modul - bestanden
+	 */
+	@Test
+	public void testModulnoteBerechnenUnbenotetBestanden() {
+		Modul modul;
+		Unit unit1, unit2;
 		
-		/*
-		 * unbenotetes Modul - bestanden
-		 */
 		modul = new Modul("name");
 		modul.setBenotet(false);
 		
@@ -158,11 +199,18 @@ public class ModulTest {
 		modul.getUnits().get(1).setBestanden(true);
 		
 		assertTrue(modul.isBestanden());
+	}
+	
+	
+	/**
+	 * Modulnote berechnen
+	 * unbenotetes Modul - nicht bestanden
+	 */
+	@Test
+	public void testModulnoteBerechnenUnbenotetDurchgefallen() {
+		Modul modul;
+		Unit unit1, unit2;	
 		
-		
-		/*
-		 * unbenotetes Modul - nicht bestanden
-		 */
 		modul = new Modul("name");
 		modul.setBenotet(false);
 		
