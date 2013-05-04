@@ -43,11 +43,6 @@ public class DHBWTest {
 		// Kurse hinzufügen
 		dhbw.addKurs(kurs1);
 		
-		for(Kurs k: dhbw.getKurse()) {
-			System.out.println(k.getKursname());
-		}
-		
-		
 		assertEquals(1, dhbw.getKurse().size());
 		assertEquals(kurs1, dhbw.getKurse().get(0));
 		

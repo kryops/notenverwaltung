@@ -125,7 +125,7 @@ public class StudienplanGenerator {
 		modul.setEigenstudium(596);
 		modul.setBenotet(false);
 		
-		modul.addUnit(new Unit("Projektarbeit I", "Ablauf- und Reflexionsbericht, Projektarbeit", 100));
+		modul.addUnit(new Unit("Projektarbeit I", "Ablauf- und Reflexionsbericht, Projektarbeit", 0));
 		modul.addUnit(new Unit("Wissenschaftliches Arbeiten", "", 0));
 		
 		studienplan.addModul(modul);
@@ -185,8 +185,8 @@ public class StudienplanGenerator {
 		modul.setPraesenz(96);
 		modul.setEigenstudium(144);
 		
-		modul.addUnit(new Unit("Betriebssysteme", "Klausur", 50));
-		modul.addUnit(new Unit("Rechnerarchitekturen 1", "Klausur", 50));
+		modul.addUnit(new Unit("Betriebssysteme", "Klausur", 40));
+		modul.addUnit(new Unit("Rechnerarchitekturen 1", "Klausur", 60));
 		modul.addUnit(new Unit("Systemnahe Programmierung 1", "", 0));
 		
 		studienplan.addModul(modul);
@@ -235,7 +235,7 @@ public class StudienplanGenerator {
 		
 		modul.addUnit(new Unit("Mündliche Prüfung", "Mündliche Prüfung", 50));
 		modul.addUnit(new Unit("Projektarbeit II", "Projektarbeit", 50));
-		modul.addUnit(new Unit("Wissenschaftliches Arbeiten", "", 0));
+		modul.addUnit(new Unit("Wissenschaftliches Arbeiten 2", "", 0));
 		
 		studienplan.addModul(modul);
 		
@@ -322,7 +322,7 @@ public class StudienplanGenerator {
 		
 		studienplan.addModul(modul);
 		
-		// Wahlmodul Angewandte Informatik (STG Jahr 2)
+		// Wahlmodul Angewandte Informatik (STG Jahr 3)
 		modul = new Modul("Wahlmodul Angewandte Informatik (STG Jahr 3)");
 		modul.setSemester(6);
 		modul.setCredits(5);
@@ -341,7 +341,7 @@ public class StudienplanGenerator {
 		modul.setEigenstudium(236);
 		
 		modul.addUnit(new Unit("Projektarbeit III", "Ablauf- und Reflexionsbericht, Projektarbeit", 100));
-		modul.addUnit(new Unit("Wissenschaftliches Arbeiten", "", 0));
+		modul.addUnit(new Unit("Wissenschaftliches Arbeiten 3", "", 0));
 		
 		studienplan.addModul(modul);
 		
@@ -353,7 +353,7 @@ public class StudienplanGenerator {
 		modul.setEigenstudium(354);
 		modul.setBenotet(false);
 		
-		modul.addUnit(new Unit("Bachelorarbeit", "Bachelorarbeit", 100));
+		modul.addUnit(new Unit("Bachelorarbeit", "Bachelorarbeit", 0));
 		
 		studienplan.addModul(modul);
 		
