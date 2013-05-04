@@ -43,6 +43,8 @@ public class StudienplanTest {
 		assertEquals(1, studienplan.getModule().size());
 		assertEquals(modul1, studienplan.getModule().get(0));
 		
+		assertEquals(studienplan, studienplan.getModule().get(0).getStudienplan());
+		
 		studienplan.addModul(modul2);
 		assertEquals(2, studienplan.getModule().size());
 		assertTrue(studienplan.getModule().contains(modul1));

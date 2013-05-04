@@ -2,6 +2,7 @@ package de.dhbw.swe.notenverwaltung;
 
 import java.security.InvalidParameterException;
 import java.util.Date;
+
 /**
  * Beschreibt das Objekt "Student".
  * In der Hierarchie liegt der Student direkt unter dem Kurs.
@@ -45,8 +46,8 @@ public class Student {
 	 * true, wenn die Bachelorarbeit bestanden wurde
 	 * Wird automatisch gesetzt, wenn eine Bachelorarbeit-Note mit 4 oder besser eingetragen wird
 	 */
-	
-	private boolean bachelorArbeit;
+	private boolean bachelorArbeitBestanden;
+
 	private double bachelorArbeitNote;
 	
 	/**
@@ -76,13 +77,16 @@ public class Student {
 	
 	/**
 	 * Legt einen Studenten an und erstellt dessen Studienplan (AI)
+	 * @param matrikelnummer
 	 * @param vorname
 	 * @param nachname
 	 * @param geburtsdatum
 	 * @param geburtsort
 	 */
-	public Student(String vorname, String nachname, Date geburtsdatum, String geburtsort) {
+	public Student(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort) {
+		this.matrikelnummer = matrikelnummer;
 		this.vorname = vorname;
+		this.nachname = nachname;
 		this.geburtsdatum = geburtsdatum;
 		this.geburtsort = geburtsort;
 		this.setImmatrikuliert(true);
@@ -98,7 +102,7 @@ public class Student {
 	 */
 	private void bachelornoteBerechnen() {
 		
-		if(!bachelorArbeit) {
+		if(!bachelorArbeitBestanden) {
 			return;
 		}
 		
@@ -118,8 +122,8 @@ public class Student {
 		}
 		
 		// Module zählen 80%, Bachelorarbeit zählt 20%
-		note = note / creditSumme * 0.8;
-		note = note + bachelorArbeitNote * 0.2;
+		note = (note / creditSumme) * 0.8;
+		note = note + (bachelorArbeitNote * 0.2);
 		
 		bachelornote = note;
 		studiumAbgeschlossen = true;
@@ -396,6 +400,10 @@ public class Student {
 		return studiumAbgeschlossen;
 	}
 	
+	public boolean isBachelorArbeitBestanden() {
+		return bachelorArbeitBestanden;
+	}
+	
 	/**
 	 * Gibt die Note der Bachelorarbeit zurück
 	 * @return Note; 0, wenn die Note noch nicht berechnet oder das Studium nicht abgeschlossen wurde
@@ -418,8 +426,12 @@ public class Student {
 		
 		this.bachelorArbeitNote = bachelorArbeitNote;
 		
+		// als bestanden / nicht bestanden markieren
 		if(bachelorArbeitNote <= 4) {
-			bachelorArbeit = true;
+			bachelorArbeitBestanden = true;
+		}
+		else {
+			bachelorArbeitBestanden = false;
 		}
 	}
 	

@@ -3,6 +3,7 @@ package de.dhbw.swe.notenverwaltung;
 import static org.junit.Assert.*;
 
 import java.security.InvalidParameterException;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -19,8 +20,16 @@ public class StudentTest {
 	 */
 	@Test
 	public void testConstructor() {
-		// TODO
-		fail("implement me");
+		Date geburtsdatum = new Date();
+		Student student = new Student(1234, "vorname", "nachname", geburtsdatum, "geburtsort");
+		
+		assertEquals(1234, student.getMatrikelnummer());
+		assertEquals("vorname", student.getVorname());
+		assertEquals("nachname", student.getNachname());
+		assertEquals(geburtsdatum, student.getGeburtsdatum());
+		assertEquals("geburtsort", student.getGeburtsort());
+		assertTrue((student.getStudienplan() instanceof Studienplan));
+		assertTrue(student.isImmatrikuliert());
 	}
 	
 	
@@ -53,8 +62,29 @@ public class StudentTest {
 	 */
 	@Test
 	public void testBachelorArbeitNote() {
-		// TODO
-		fail("implement me");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		
+		// Normalfälle: 2.5 (bestanden), 4.5 (nicht bestanden)
+		student.setBachelorArbeitNote(2.5);
+		assertEquals(2.5, student.getBachelorArbeitNote(), 0.01);
+		assertTrue(student.isBachelorArbeitBestanden());
+		
+		student.setBachelorArbeitNote(4.5);
+		assertEquals(4.5, student.getBachelorArbeitNote(), 0.01);
+		assertFalse(student.isBachelorArbeitBestanden());
+		
+		// Grenzfälle: 1, 4 (bestanden), 4.1 und 5 (nicht bestanden)
+		student.setBachelorArbeitNote(4);
+		assertEquals(4, student.getBachelorArbeitNote(), 0.01);
+		assertTrue(student.isBachelorArbeitBestanden());
+		
+		student.setBachelorArbeitNote(4.1);
+		assertEquals(4.1, student.getBachelorArbeitNote(), 0.01);
+		assertFalse(student.isBachelorArbeitBestanden());
+		
+		student.setBachelorArbeitNote(5);
+		assertEquals(5, student.getBachelorArbeitNote(), 0.01);
+		assertFalse(student.isBachelorArbeitBestanden());
 	}
 	
 	
@@ -64,8 +94,8 @@ public class StudentTest {
 	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testBachelorArbeitNoteTooHigh() {
-		// TODO
-		fail("implement me");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		student.setBachelorArbeitNote(5.1);
 	}
 	
 	
@@ -75,8 +105,8 @@ public class StudentTest {
 	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testBachelorArbeitNoteTooLow() {
-		// TODO
-		fail("implement me");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		student.setBachelorArbeitNote(0.9);
 	}
 	
 }

@@ -19,6 +19,11 @@ public class DHBW {
 		kurse = new ArrayList<Kurs>();
 	}
 	
+	
+	/**
+	 * Liefert das Singleton-Objekt der DHBW-Klasse zurück
+	 * @return
+	 */
 	public static DHBW getDHBW(){
 		
 		if(dhbw == null) {
@@ -29,6 +34,11 @@ public class DHBW {
 	}
 	
 	
+	/**
+	 * Findet einen Studenten anhand seiner Matrikelnummer
+	 * @param matrikelnummer
+	 * @return Student; null, wenn der Student nicht gefunden wird
+	 */
 	public Student findStudentByMatrikelnummer(int matrikelnummer){
 		
 		for(Kurs k : kurse) {
@@ -42,6 +52,12 @@ public class DHBW {
 		return null;
 	}
 	
+	
+	/**
+	 * Findet einen Kurs anhand seines Namens
+	 * @param kursname
+	 * @return Kurs; null, wenn der Kurs nicht gefunden wird
+	 */
 	public Kurs findKursByName(String kursname){
 		
 		for(Kurs k : kurse) {
