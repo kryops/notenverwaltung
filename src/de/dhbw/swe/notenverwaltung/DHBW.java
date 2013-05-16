@@ -77,6 +77,7 @@ public class DHBW {
 	
 	public void removeKurs(Kurs kurs) {
 		kurse.remove(kurs);
+		kurs.setDhbw(null);
 	}
 	
 	

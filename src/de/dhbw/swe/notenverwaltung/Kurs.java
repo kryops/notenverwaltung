@@ -37,6 +37,7 @@ public class Kurs {
 	
 	public void removeStudent(Student student) {
 		studenten.remove(student);
+		student.setKurs(null);
 	}
 	
 	

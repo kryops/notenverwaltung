@@ -45,6 +45,7 @@ public class Studienplan {
 	 */
 	public void removeModul(Modul modul) {
 		module.remove(modul);
+		modul.setStudienplan(null);
 	}
 	
 	/**
