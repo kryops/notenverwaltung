@@ -118,7 +118,7 @@ public class Studentenverwaltung {
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		
-		if(student != null){
+		if((student != null) && student.isImmatrikuliert()){
 			if(vorname != null){
 				student.setVorname(vorname);
 			}
@@ -150,14 +150,39 @@ public class Studentenverwaltung {
 				System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
 			}
 		}else{
-			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
+			System.out.println("Entweder der angegebenen Matrikelnummer konnte kein Student zugeordnet werden oder der Student ist nicht immatrikuliert.");
 			
 		}
 		
 		
 	}
 	
-	public void studentAnzeigen(){
+	public void studentAnzeigen(int matrikelnummer){
+		String immatrikulationsstatus;
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		if(student != null){
+			if(student.isImmatrikuliert()){
+				immatrikulationsstatus = "immatrikuliert";
+			}else{
+				immatrikulationsstatus = "exmatrikuliert";
+			}
+			//AUSGABE
+			System.out.println("Matr.-Nr.: " + matrikelnummer + "  Name: " + student.getVorname() + " " + student.getNachname());
+			System.out.println("Studium  Studiengang: " + student.getStudiengang() + " Jahrgang: " + student.getJahrgang() + immatrikulationsstatus);
+			System.out.println("Geburtsdaten: " + student.getGeburtsort() + " " + student.getGeburtsdatum());
+			System.out.println("Kontaktdaten  Email " + student.getEmail() + " Tel." + student.getTelefonnummer());
+			System.out.println("Heimatadresse: " + student.getHeimadresse());
+			System.out.println("Studentnadresse: " + student.getStudentenadresse());
+			System.out.println("Abitur  Abschlussnote: " + student.getAbiturnote() + " " + student.getAbiturort() + " Jahrgang: " + student.getAbiturjahrgang());
+			System.out.println("Unternehmen  Firma: " + student.getFirmenname() + " Ausbildungsleiter: " + student.getAusbildungsleiter());
+			
+		}else{
+			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
+			
+		}
+		
+		
 		
 		
 	}
@@ -168,7 +193,24 @@ public class Studentenverwaltung {
 	}
 	
 	
-	
+	/**
+	 * Diese Funktion dient zur Unterstützung beim Anlegen eines Studenten und bei der
+	 * Vervollständigung der Studentendaten.
+	 * Die Matrikelnummer dient nur der Identifizierung des Studenten.
+	 * 
+	 * 
+	 * @param matrikelnummer
+	 * @param email
+	 * @param telefonnummer
+	 * @param abiturjahrgang
+	 * @param abiturort
+	 * @param studentenadresse
+	 * @param firmenname
+	 * @param ausbildungsleiter
+	 * @param studiengang
+	 * @param jahrgang
+	 * @return
+	 */
 	public boolean zusatzStudentenDaten(int matrikelnummer, String email, String telefonnummer, int abiturjahrgang, String abiturort, 
 			String studentenadresse, String firmenname, String ausbildungsleiter, String studiengang, int jahrgang){
 		
