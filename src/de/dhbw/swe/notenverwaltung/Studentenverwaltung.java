@@ -29,29 +29,125 @@ public class Studentenverwaltung {
 	 */
 	public void kurseErstmalsEinteilen(String kursname, int jahrgang, String studiengang, String studiengangsleiter, String raum, 
 			List<Student> studenten){
-		DHBW dhbw = DHBW.getDHBW();
+		int kursgroesse = studenten.size();
 		
-		if((kursname != null) && (dhbw.findKursByName(kursname) == null) && (jahrgang != 0) && (studiengang != null)){
-			Kurs kurs = new Kurs(kursname, jahrgang, studiengang);
+		if(kursgroesse < 21){
+			DHBW dhbw = DHBW.getDHBW();
+			
+			if((kursname != null) && (dhbw.findKursByName(kursname) == null) && (jahrgang != 0) && (studiengang != null)){
+				Kurs kurs = new Kurs(kursname, jahrgang, studiengang);
+				if(studiengangsleiter != null){
+					kurs.setStudiengangsleiter(studiengangsleiter);			
+				}
+				if(raum != null){
+					kurs.setRaum(raum);
+				}
+				
+				if(studenten != null){
+					for(Student student : studenten ){
+						if(student.isImmatrikuliert()){
+							kurs.addStudent(student);
+						}else{
+							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
+									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
+						}			
+					}	
+				}
+			}
+		}else{
+			System.out.println("Bitte verringern Sie die Anzahl der Studenten auf maximal 20.");
+			
+		}
+	}
+	
+	
+	/**
+	 * F30:
+	 * Zum Bearbeiten der Kursdaten wird diese Funktion verwendet,
+	 * allerdings kann weder der Kursname noch der Jahrgang oder der Studiengang geändert werden.
+	 * Die Änderung der zugehörigen Studenten erfolgt in der Parallelfunktion (Überladung).
+	 * 
+	 * @param kursname
+	 * @param studiengangsleiter
+	 * @param raum
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void kursBearbeiten(String kursname, String studiengangsleiter, String raum){
+		DHBW dhbw = DHBW.getDHBW();
+		Kurs kurs = dhbw.findKursByName(kursname);
+		
+		if(kurs != null){
 			if(studiengangsleiter != null){
-				kurs.setStudiengangsleiter(studiengangsleiter);			
+				kurs.setStudiengangsleiter(studiengangsleiter);
 			}
 			if(raum != null){
 				kurs.setRaum(raum);
 			}
-			
-			if(studenten != null){
-				for(Student student : studenten ){
-					if(student.isImmatrikuliert()){
-						kurs.addStudent(student);
-					}else{
-						System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
-								"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
-					}			
-				}	
-			}
+		}else{
+			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden.");	
 		}
 	}
+	
+
+	/**
+	 * F30:
+	 * zum Bearbeiten der Studentenzugehörigkeit zu einem Kurs 
+	 * es wird eine Liste mit Studenten mitgegeben, die entweder hinzugefügt oder entfernt werden
+	 * bei einer Aktion = 1 werden die Studenten hinzugefügt
+	 * bei einer Aktion = -1 werden die Studenten gelöscht
+	 * 
+	 * @param kursname
+	 * @param studenten
+	 * @param aktion
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void kursBearbeiten(String kursname, List<Student> studenten, int aktion){
+		DHBW dhbw = DHBW.getDHBW();
+		Kurs kurs = dhbw.findKursByName(kursname);
+		
+		if((kurs != null) && (studenten != null)){
+			//Hinzufügen der übergebenen Studenten
+			if(aktion == 1){
+				if(kurs.getStudenten().size() == 20){
+					System.out.println("Die maximale Teilnehmerzahl des Kurses ist bereits erreicht.");
+					
+				}else if((kurs.getStudenten().size() + studenten.size()) < 21){
+					for(Student student : studenten ){
+						if(student.isImmatrikuliert()){
+							kurs.addStudent(student);
+						}else{
+							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
+									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
+						}	
+					}
+				}else{
+					System.out.println("Bitte verringern Sie die Anzahl der hinzuzufügenden Studenten, so dass" + 
+							" die maximale Kursgröße (20Teilnehmer) nicht überschritten wird");
+				}
+				
+				
+				
+			//Entfernen der übergebenen Studenten 	
+			}else if(aktion == -1){
+				for(Student student : studenten){
+					if(student.getKurs().getKursname() == kursname){
+						kurs.removeStudent(student);						
+					}else{
+						System.out.println("Der Student " + student.getMatrikelnummer() + " gehört nicht dem ausgewähltem Kurs an und wird daher nicht entfernt.");
+					}
+				}
+	
+			}else{
+				System.out.println("Die angegebene Aktion ist nicht zulässig.");
+			}
+					
+		}else{
+			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden.");	
+		}
+	}
+	
 	
 	
 	/**
