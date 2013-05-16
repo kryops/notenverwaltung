@@ -1,6 +1,7 @@
 package de.dhbw.swe.notenverwaltung;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Diese Klasse enthält alle Treiberfunktionen, die die Verwaltung der Studenten betrifft.
@@ -13,10 +14,43 @@ import java.util.Date;
 public class Studentenverwaltung {
 	
 
-//TODO
-	public void kurseEinteilen(){
+	/**
+	 * F30:
+	 * Bei der erstmaligen Erstellung eines Kurses können direkt die Studenten zugeordnet werden.
+	 * 
+	 * @param kursname
+	 * @param jahrgang
+	 * @param studiengang
+	 * @param studiengangsleiter
+	 * @param raum
+	 * @param studenten
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void kurseErstmalsEinteilen(String kursname, int jahrgang, String studiengang, String studiengangsleiter, String raum, 
+			List<Student> studenten){
+		DHBW dhbw = DHBW.getDHBW();
 		
-		
+		if((kursname != null) && (dhbw.findKursByName(kursname) == null) && (jahrgang != 0) && (studiengang != null)){
+			Kurs kurs = new Kurs(kursname, jahrgang, studiengang);
+			if(studiengangsleiter != null){
+				kurs.setStudiengangsleiter(studiengangsleiter);			
+			}
+			if(raum != null){
+				kurs.setRaum(raum);
+			}
+			
+			if(studenten != null){
+				for(Student student : studenten ){
+					if(student.isImmatrikuliert()){
+						kurs.addStudent(student);
+					}else{
+						System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
+								"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
+					}			
+				}	
+			}
+		}
 	}
 	
 	
@@ -213,8 +247,6 @@ public class Studentenverwaltung {
 		}else{
 			System.out.println("Der Student " + matrikelnummer + " konnte nicht exmatrikuliert werden.");
 		}
-		
-		
 		
 	}
 	
