@@ -12,7 +12,7 @@ public class StudentenverwaltungTest extends TestObjekte{
 	public void testKurseErstmalsEinteilen(){
 		sv.kurseErstmalsEinteilen("kursname1", 2010, "AI", "LLL", "6", studentenAnlegen(5, "zz"));
 		
-		assertEquals("kursname1", dhbw.findKursByName("kursname1"));
+		assertEquals("kursname1", dhbw.findKursByName("kursname1").getKursname());
 		
 		
 		
