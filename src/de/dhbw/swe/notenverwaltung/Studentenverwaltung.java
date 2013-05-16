@@ -11,12 +11,9 @@ import java.util.Date;
  * @author Hanne Nobis
  */
 public class Studentenverwaltung {
-	//TODO: Kurse einteilen
-	//TODO: Studenten immatrikulieren (anlegen)
-	//TODO: Studenten verwalten: bearbeiten anzeigen
-	//TODO: Studenten exmatrikulieren
 	
-	
+
+//TODO
 	public void kurseEinteilen(){
 		
 		
@@ -193,7 +190,30 @@ public class Studentenverwaltung {
 		
 	}
 	
-	public void studentExmatrikulieren(){
+	
+	
+	
+	
+	
+	/**
+	 * F42:
+	 * der Student wird bei Aufruf dieser Funktion anhand der Matrikelnummer exmatrikuliert 
+	 * 
+	 * @param matrikelnummer
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void studentExmatrikulieren(int matrikelnummer){
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		
+		if((student != null) && student.isImmatrikuliert()){
+			student.setImmatrikuliert(false); 
+			System.out.println("Der Student " + matrikelnummer + " wurde exmatrikuliert.");			
+		}else{
+			System.out.println("Der Student " + matrikelnummer + " konnte nicht exmatrikuliert werden.");
+		}
+		
 		
 		
 	}
