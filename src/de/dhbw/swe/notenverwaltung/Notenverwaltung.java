@@ -15,7 +15,7 @@ public class Notenverwaltung {
 	
 	
 	/** F20 : 
-	 * Diese Funktion kann Noten komplett neu eintragen und auch überschreiben.
+	 * Diese Funktion kann Noten komplett neu eintragen und auch bearbeiten.
 	 *
 	 * 
 	 * @param matrikelnummer 
@@ -136,23 +136,6 @@ public class Notenverwaltung {
 	}
 	
 	
-	
-	
-	
-	
-	public void notenArchivieren(){
-		//TODO: Frage F21
-		
-	}
-	
-	public void notenLoeschen(int matrikelnummer){
-		//TODO: Frage F21
-		DHBW dhbw = DHBW.getDHBW();
-		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
-		if(student.isImmatrikuliert() == false){
-			
-		}
-	}
 	/** F22 :
 	 * Sofern das Studium beendet ist, soll die Bachelornote berechnet werden.
 	 * Dazu muss der Student immatrikuliert sein und alle Noten müssen im System eingetragen sein.
