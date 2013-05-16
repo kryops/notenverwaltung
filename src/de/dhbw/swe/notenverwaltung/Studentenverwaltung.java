@@ -157,6 +157,15 @@ public class Studentenverwaltung {
 		
 	}
 	
+	/**
+	 * F41:
+	 * zur Ausgabe aller vorhandenen Daten in der Konsole (mangels einer grafischen Oberfläche)
+	 * Identifizierung durch Übergabe der Matrikelnummer
+	 * 
+	 * @param matrikelnummer
+	 * 
+	 * @author Hanne Nobis
+	 */
 	public void studentAnzeigen(int matrikelnummer){
 		String immatrikulationsstatus;
 		DHBW dhbw = DHBW.getDHBW();
@@ -181,9 +190,6 @@ public class Studentenverwaltung {
 			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
 			
 		}
-		
-		
-		
 		
 	}
 	
