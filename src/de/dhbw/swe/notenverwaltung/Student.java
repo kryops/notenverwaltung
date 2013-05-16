@@ -23,16 +23,9 @@ public class Student {
 	private String abiturort;
 	private double abiturnote;
 	
-	//Heimadresse
-	private String heimstrasse;
-	private int heimhausnummer;
-	private int heimpostleitzahl;
-	private String heimort;
-	//Studentenadresse
-	private String studentenstrasse;
-	private int studentenhausnummer;
-	private int studentenpostleitzahl;
-	private String studentenort;
+	//Adressen
+	private String heimadresse;
+	private String studentenadresse;
 	
 	//Studiendaten
 	private int matrikelnummer;
@@ -83,12 +76,14 @@ public class Student {
 	 * @param geburtsdatum
 	 * @param geburtsort
 	 */
-	public Student(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort) {
+	public Student(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort, String heimadresse, double abiturnote) {
 		this.matrikelnummer = matrikelnummer;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.geburtsdatum = geburtsdatum;
 		this.geburtsort = geburtsort;
+		this.heimadresse = heimadresse;
+		this.abiturnote = abiturnote;
 		this.setImmatrikuliert(true);
 		
 		// Studienplan generieren
@@ -222,84 +217,29 @@ public class Student {
 	}
 	
 	
-	public String getHeimstrasse() {
-		return heimstrasse;
+	public String getHeimadresse() {
+		return heimadresse;
 	}
 	
 	
-	public void setHeimstrasse(String heimstrasse) {
-		this.heimstrasse = heimstrasse;
+	
+	public String getStudentenadresse() {
+		return studentenadresse;
 	}
 	
 	
-	public int getHeimhausnummer() {
-		return heimhausnummer;
+	
+	
+	public void setStudentenadresse(String studentenadresse) {
+		this.studentenadresse = studentenadresse;
 	}
 	
 	
-	public void setHeimhausnummer(int heimhausnummer) {
-		this.heimhausnummer = heimhausnummer;
+	public void setHeimadresse(String heimadresse) {
+		this.heimadresse = heimadresse;
 	}
 	
 	
-	public int getHeimpostleitzahl() {
-		return heimpostleitzahl;
-	}
-	
-	
-	public void setHeimpostleitzahl(int heimpostleitzahl) {
-		this.heimpostleitzahl = heimpostleitzahl;
-	}
-	
-	
-	public String getHeimort() {
-		return heimort;
-	}
-	
-	
-	public void setHeimort(String heimort) {
-		this.heimort = heimort;
-	}
-	
-	
-	public String getStudentenstrasse() {
-		return studentenstrasse;
-	}
-	
-	
-	public void setStudentenstrasse(String studentenstrasse) {
-		this.studentenstrasse = studentenstrasse;
-	}
-	
-	
-	public int getStudentenhausnummer() {
-		return studentenhausnummer;
-	}
-	
-	
-	public void setStudentenhausnummer(int studentenhausnummer) {
-		this.studentenhausnummer = studentenhausnummer;
-	}
-	
-	
-	public int getStudentenpostleitzahl() {
-		return studentenpostleitzahl;
-	}
-	
-	
-	public void setStudentenpostleitzahl(int studentenpostleitzahl) {
-		this.studentenpostleitzahl = studentenpostleitzahl;
-	}
-	
-	
-	public String getStudentenort() {
-		return studentenort;
-	}
-	
-	
-	public void setStudentenort(String studentenort) {
-		this.studentenort = studentenort;
-	}
 	
 	
 	public int getMatrikelnummer() {
