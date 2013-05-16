@@ -29,13 +29,13 @@ public class Notenverwaltung {
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		
 		if (student == null){
-			System.out.println("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer nicht korrekt. Fehlercode: NV028");
+			System.out.println("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer nicht korrekt. FC: NV032");
 			
 		}else{
 			Unit unit = student.getStudienplan().findUnitByName(unitname);
 			
 			if(unit == null){
-				System.out.println("Die Unit konnte im System nicht gefunden werden. Fehlercode: NV034");
+				System.out.println("Die Unit konnte im System nicht gefunden werden. FC: NV038");
 				
 			}else{
 				try {
@@ -43,7 +43,7 @@ public class Notenverwaltung {
 					System.out.println("Die Noten wurden erfolgreich eingetragen/geändert.");
 					
 				}catch(InvalidParameterException ipe){
-					System.out.println("Die Noten liegen nicht im gültigen Bereich. Fehlercode: NV043" + ipe.getMessage());
+					System.out.println("Die Noten liegen nicht im gültigen Bereich. FC: NV046" + ipe.getMessage());
 					System.out.println("Bitte versuchen Sie es erneut.");
 				}				
 			}
@@ -65,11 +65,11 @@ public class Notenverwaltung {
 		Kurs kurs = dhbw.findKursByName(kursname);
 		
 		if(kurs == null){
-			System.out.println("Der Kurs konnte im System nicht gefunden werden. Fehlercode: NV058");
+			System.out.println("Der Kurs konnte im System nicht gefunden werden. FC: NV068");
 			
 		}else{
 			if(kurs.getStudenten().size() == 0){
-				System.out.println("Zu diesem Kurs konnten keine Studenten gefunden werden. Fehlercode: NV062");
+				System.out.println("Zu diesem Kurs konnten keine Studenten gefunden werden. FC: NV072");
 				
 			}else{
 				for(Student student : kurs.getStudenten()){
@@ -94,7 +94,7 @@ public class Notenverwaltung {
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		
 		if (student == null){
-			System.out.println("Student konnte im System nicht gefunden werden. Fehlercode: NV063");
+			System.out.println("Student konnte im System nicht gefunden werden. FC: NV097");
 			
 		}else{
 			notenAusgabe(student, unitname);		
@@ -113,10 +113,10 @@ public class Notenverwaltung {
 		System.out.print("Student: " + student.getVorname() + student.getNachname() + ", " + student.getMatrikelnummer());
 		
 		if(student.getStudienplan().findUnitByName(unitname) == null){					//Unit existiert nicht
-			System.out.println("Unit konnte im System nicht gefunden werden. Fehlercode: NV080");		
+			System.out.println("Unit konnte im System nicht gefunden werden. FC: NV116");		
 			
 		}else if(student.getStudienplan().findUnitByName(unitname).getNote() == 0){		//Note noch nicht erfasst
-			System.out.println("Zu dieser Unit wurde noch keine Note eingetragen. Fehlercode: NV082");	
+			System.out.println("Zu dieser Unit wurde noch keine Note eingetragen. FC: NV119");	
 			
 		}else { //Note kann ausgegeben werden, Unterscheidung zwischen benotet und bestanden/nicht bestanden notwendig
 			
@@ -152,7 +152,7 @@ public class Notenverwaltung {
 				System.out.println(" Bachelornote:" + student.getBachelornote());				
 			}
 			else{
-				System.out.println("Bachelornote wurde nicht berechnet.");
+				System.out.println("Bachelornote wurde nicht berechnet. FC: NV155");
 			}
 		}		
 	}

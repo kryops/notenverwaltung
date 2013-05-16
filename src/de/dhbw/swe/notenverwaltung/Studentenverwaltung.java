@@ -29,7 +29,11 @@ public class Studentenverwaltung {
 	 */
 	public void kurseErstmalsEinteilen(String kursname, int jahrgang, String studiengang, String studiengangsleiter, String raum, 
 			List<Student> studenten){
-		int kursgroesse = studenten.size();
+		int kursgroesse = 0;
+		
+		if(studenten != null){
+			kursgroesse = studenten.size();
+		}
 		
 		if(kursgroesse < 21){
 			DHBW dhbw = DHBW.getDHBW();
@@ -49,13 +53,14 @@ public class Studentenverwaltung {
 							kurs.addStudent(student);
 						}else{
 							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
-									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
+									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden. FC: SV056");
 						}			
 					}	
 				}
+				System.out.println("Der Kurs wurde angelegt.");
 			}
 		}else{
-			System.out.println("Bitte verringern Sie die Anzahl der Studenten auf maximal 20.");
+			System.out.println("Bitte verringern Sie die Anzahl der Studenten auf maximal 20. FC: SV063");
 			
 		}
 	}
@@ -85,7 +90,7 @@ public class Studentenverwaltung {
 				kurs.setRaum(raum);
 			}
 		}else{
-			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden.");	
+			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden. FC: SV093");	
 		}
 	}
 	
@@ -111,7 +116,7 @@ public class Studentenverwaltung {
 			//Hinzufügen der übergebenen Studenten
 			if(aktion == 1){
 				if(kurs.getStudenten().size() == 20){
-					System.out.println("Die maximale Teilnehmerzahl des Kurses ist bereits erreicht.");
+					System.out.println("Die maximale Teilnehmerzahl des Kurses ist bereits erreicht. FC: SV119");
 					
 				}else if((kurs.getStudenten().size() + studenten.size()) < 21){
 					for(Student student : studenten ){
@@ -119,12 +124,12 @@ public class Studentenverwaltung {
 							kurs.addStudent(student);
 						}else{
 							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
-									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden.");
+									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden. FC: SV127");
 						}	
 					}
 				}else{
 					System.out.println("Bitte verringern Sie die Anzahl der hinzuzufügenden Studenten, so dass" + 
-							" die maximale Kursgröße (20Teilnehmer) nicht überschritten wird");
+							" die maximale Kursgröße (20Teilnehmer) nicht überschritten wird. FC: SV132");
 				}
 				
 				
@@ -135,16 +140,17 @@ public class Studentenverwaltung {
 					if(student.getKurs().getKursname() == kursname){
 						kurs.removeStudent(student);						
 					}else{
-						System.out.println("Der Student " + student.getMatrikelnummer() + " gehört nicht dem ausgewähltem Kurs an und wird daher nicht entfernt.");
+						System.out.println("Der Student " + student.getMatrikelnummer() + " gehört nicht dem ausgewähltem Kurs an und" + 
+								"wird daher nicht entfernt. FC: SV144");
 					}
 				}
 	
 			}else{
-				System.out.println("Die angegebene Aktion ist nicht zulässig.");
+				System.out.println("Die angegebene Aktion ist nicht zulässig. FC: SV149");
 			}
 					
 		}else{
-			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden.");	
+			System.out.println("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden. FC: SV153");	
 		}
 	}
 	
@@ -193,15 +199,15 @@ public class Studentenverwaltung {
 					studiengang, jahrgang)){
 				System.out.println("Der Student wurde erfolgreich angelegt und immatrikuliert.");
 			}else{
-				System.out.println("Der Student konnte nicht immatrikuliert werden, da die Daten nicht vollständig sind.");
+				System.out.println("Der Student konnte nicht immatrikuliert werden, da die Daten nicht vollständig sind. FC: SV202");
 				
 			}
 			
 		}else {
 			if(dhbw.findStudentByMatrikelnummer(matrikelnummer) != null) {
-				System.out.println("Die Matrikelnummer wurde bereits vergeben.");
+				System.out.println("Die Matrikelnummer wurde bereits vergeben. FC: SV208");
 			}
-			System.out.println("Der Student konnte nicht immatrikuliert werden, da die Daten nicht vollständig sind.");
+			System.out.println("Der Student konnte nicht immatrikuliert werden, da die Daten nicht vollständig sind. FC: SV210");
 		}
 		
 	}
@@ -274,10 +280,11 @@ public class Studentenverwaltung {
 					studiengang, jahrgang)){
 				System.out.println("Der Student wurde erfolgreich bearbeitet.");
 			}else{
-				System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
+				System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV283");
 			}
 		}else{
-			System.out.println("Entweder der angegebenen Matrikelnummer konnte kein Student zugeordnet werden oder der Student ist nicht immatrikuliert.");
+			System.out.println("Entweder der angegebenen Matrikelnummer konnte kein Student zugeordnet werden oder der Student ist" + 
+					"nicht immatrikuliert. FC: SV287");
 			
 		}
 		
@@ -314,7 +321,7 @@ public class Studentenverwaltung {
 			System.out.println("Unternehmen  Firma: " + student.getFirmenname() + " Ausbildungsleiter: " + student.getAusbildungsleiter());
 			
 		}else{
-			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden.");
+			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV324");
 			
 		}
 		
@@ -339,9 +346,10 @@ public class Studentenverwaltung {
 		
 		if((student != null) && student.isImmatrikuliert()){
 			student.setImmatrikuliert(false); 
+			student.getKurs().removeStudent(student);			
 			System.out.println("Der Student " + matrikelnummer + " wurde exmatrikuliert.");			
 		}else{
-			System.out.println("Der Student " + matrikelnummer + " konnte nicht exmatrikuliert werden.");
+			System.out.println("Der Student " + matrikelnummer + " konnte nicht exmatrikuliert werden. FC: SV352");
 		}
 		
 	}
