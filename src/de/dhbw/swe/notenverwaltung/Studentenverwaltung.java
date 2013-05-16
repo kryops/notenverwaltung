@@ -57,6 +57,7 @@ public class Studentenverwaltung {
 						}			
 					}	
 				}
+				dhbw.addKurs(kurs);
 				System.out.println("Der Kurs wurde angelegt.");
 			}
 		}else{
