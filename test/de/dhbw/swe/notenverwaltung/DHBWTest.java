@@ -79,9 +79,9 @@ public class DHBWTest {
 		Kurs kurs1 = new Kurs("name1", 2011, "studiengang1");
 		Kurs kurs2 = new Kurs("name2", 2011, "studiengang2");
 		
-		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1");
-		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2");
-		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3");
+		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1", "heimadresse1", 1.5);
+		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2", "heimadresse2", 1.5);
+		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3", "heimadresse3", 1.5);
 		
 		kurs1.addStudent(student1);
 		kurs1.addStudent(student2);
@@ -110,9 +110,9 @@ public class DHBWTest {
 		Kurs kurs1 = new Kurs("name1", 2011, "studiengang1");
 		Kurs kurs2 = new Kurs("name2", 2011, "studiengang2");
 		
-		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1");
-		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2");
-		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3");
+		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1", "heimadresse1", 1.5);
+		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2", "heimadresse2", 1.5);
+		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3", "heimadresse3", 1.5);
 		
 		kurs1.addStudent(student1);
 		kurs1.addStudent(student2);

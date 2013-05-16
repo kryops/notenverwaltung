@@ -21,13 +21,15 @@ public class StudentTest {
 	@Test
 	public void testConstructor() {
 		Date geburtsdatum = new Date();
-		Student student = new Student(1234, "vorname", "nachname", geburtsdatum, "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", geburtsdatum, "geburtsort", "heimadresse", 1.5);
 		
 		assertEquals(1234, student.getMatrikelnummer());
 		assertEquals("vorname", student.getVorname());
 		assertEquals("nachname", student.getNachname());
 		assertEquals(geburtsdatum, student.getGeburtsdatum());
 		assertEquals("geburtsort", student.getGeburtsort());
+		assertEquals("heimadresse", student.getHeimadresse());
+		assertEquals(1.5, student.getAbiturnote(), 0.01);
 		assertTrue((student.getStudienplan() instanceof Studienplan));
 		assertTrue(student.isImmatrikuliert());
 	}
@@ -158,7 +160,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testStudiumAbgeschlossenBestanden() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		Studienplan studienplan = student.getStudienplan();
 		
 		// Alle Units und Module mit Noten bzw. bestanden versehen
@@ -193,7 +195,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testStudiumAbgeschlossenDurchgefallenModule() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		Studienplan studienplan = student.getStudienplan();
 		
 		// Alle Units und Module mit Noten bzw. bestanden versehen
@@ -213,7 +215,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testStudiumAbgeschlossenDurchgefallenbachelorarbeit() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		Studienplan studienplan = student.getStudienplan();
 		
 		// Alle Units und Module mit Noten bzw. bestanden versehen
@@ -235,7 +237,7 @@ public class StudentTest {
 	 */
 	@Test
 	public void testBachelorArbeitNote() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		
 		// Normalfälle: 2.5 (bestanden), 4.5 (nicht bestanden)
 		student.setBachelorArbeitNote(2.5);
@@ -267,7 +269,7 @@ public class StudentTest {
 	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testBachelorArbeitNoteTooHigh() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		student.setBachelorArbeitNote(5.1);
 	}
 	
@@ -278,7 +280,7 @@ public class StudentTest {
 	 */
 	@Test(expected = InvalidParameterException.class)
 	public void testBachelorArbeitNoteTooLow() {
-		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort");
+		Student student = new Student(1234, "vorname", "nachname", new Date(), "geburtsort", "heimadresse", 1.5);
 		student.setBachelorArbeitNote(0.9);
 	}
 	

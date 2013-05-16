@@ -37,9 +37,9 @@ public class KursTest {
 		Kurs kurs = new Kurs("name", 2011, "studiengang");
 		
 		// Studenten hinzufügen
-		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1");
-		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2");
-		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3");
+		Student student1 = new Student(1, "vorname1", "nachname1", new Date(), "geburtsort1", "heimadresse1", 1.5);
+		Student student2 = new Student(2, "vorname2", "nachname2", new Date(), "geburtsort2", "heimadresse2", 1.5);
+		Student student3 = new Student(3, "vorname3", "nachname3", new Date(), "geburtsort3", "heimadresse3", 1.5);
 		
 		kurs.addStudent(student1);
 		assertEquals(1, kurs.getStudenten().size());

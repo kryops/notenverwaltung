@@ -75,6 +75,8 @@ public class Student {
 	 * @param nachname
 	 * @param geburtsdatum
 	 * @param geburtsort
+	 * @param heimadresse
+	 * @param abiturnote
 	 */
 	public Student(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort, String heimadresse, double abiturnote) {
 		this.matrikelnummer = matrikelnummer;
