@@ -8,7 +8,7 @@ public class TestObjekte{
 	DHBW dhbw = DHBW.getDHBW();
 	int matrikel = 1;
 	
-	protected void kurseAnlegen(){
+	public void kurseAnlegen(){
 		//Kurs ohne Studenten
 		Kurs kursLeer = new Kurs("kursleer", 2010, "AI");
 		kursLeer.setRaum("1.101");
@@ -31,11 +31,12 @@ public class TestObjekte{
 		
 	}
 	
-	protected List<Student> studentenAnlegen (int anzahl, String id ){
+	public List<Student> studentenAnlegen (int anzahl, String id ){
 		List<Student> studenten = new ArrayList<Student>();
 		for(int i=0; i<anzahl; i++){
 			id = id + String.valueOf(i);
 			studenten.add(new Student(matrikel, "V" + id, "N" + id, new Date(), "Gort" + id, "heimadr" + id, 2));
+			matrikel++;
 		}
 				
 		return studenten;

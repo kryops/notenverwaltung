@@ -15,7 +15,8 @@ public class Notenverwaltung {
 	
 	
 	/** F20 : 
-	 * Diese Funktion kann Noten komplett neu eintragen und auch bearbeiten.
+	 * Diese Funktion kann Noten für einen Studenten
+	 * komplett neu eintragen und auch bearbeiten.
 	 *
 	 * 
 	 * @param matrikelnummer 
