@@ -111,10 +111,10 @@ public class Notenverwaltung {
 	 * @author Hanne Nobis
 	 */
 	public void notenAusgabe(Student student, String unitname){
-		System.out.print("Student: " + student.getVorname() + student.getNachname() + ", " + student.getMatrikelnummer());
+		System.out.print("Student: " + student.getVorname() + " " + student.getNachname() + ", " + student.getMatrikelnummer());
 		
 		if(student.getStudienplan().findUnitByName(unitname) == null){					//Unit existiert nicht
-			System.out.println("Unit konnte im System nicht gefunden werden. FC: NV116");		
+			System.out.println(" | Unit konnte im System nicht gefunden werden. FC: NV116");		
 			
 		}else if(student.getStudienplan().findUnitByName(unitname).getNote() == 0){		//Note noch nicht erfasst
 			System.out.println("Zu dieser Unit wurde noch keine Note eingetragen. FC: NV119");	
@@ -122,15 +122,15 @@ public class Notenverwaltung {
 		}else { //Note kann ausgegeben werden, Unterscheidung zwischen benotet und bestanden/nicht bestanden notwendig
 			
 			if(student.getStudienplan().findUnitByName(unitname).isBenotet()){ //Note wird so interpretiert, wie sie eingetragen wurde
-				System.out.println("Unit: " + unitname + "Benotung: " + student.getStudienplan().findUnitByName(unitname).getNote());
+				System.out.println(" | Unit: " + unitname + " | Benotung: " + student.getStudienplan().findUnitByName(unitname).getNote());
 			
 			}else{//Note wird als bestanden/nicht bestanden interpretiert: 1.0 bestanden, 5.0 nicht bestanden
 				
 				if(student.getStudienplan().findUnitByName(unitname).isBestanden()){
-					System.out.println("Unit: " + unitname + "Benotung: bestanden");
+					System.out.println(" | Unit: " + unitname + " | Benotung: bestanden");
 									
 				}else{
-					System.out.println("Unit: " + unitname + "Benotung: nicht bestanden");
+					System.out.println(" | Unit: " + unitname + " | Benotung: nicht bestanden");
 				}
 			}
 		}
@@ -149,8 +149,8 @@ public class Notenverwaltung {
 	public void bachelornotenBerechnen(Kurs kurs){
 		for(Student student : kurs.getStudenten()){
 			if(student.isStudiumAbgeschlossen() && student.isImmatrikuliert()){
-				System.out.print("Student: " + student.getVorname() + student.getNachname() +", " + student.getMatrikelnummer());
-				System.out.println(" Bachelornote:" + student.getBachelornote());				
+				System.out.print("Student: " + student.getVorname() + " " + student.getNachname() +", " + student.getMatrikelnummer());
+				System.out.println(" | Bachelornote: " + student.getBachelornote());				
 			}
 			else{
 				System.out.println("Bachelornote wurde nicht berechnet. FC: NV155");
