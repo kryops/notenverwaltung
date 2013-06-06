@@ -24,6 +24,7 @@ public class NotenverwaltungTest extends TestObjekte{
 		Date geburtsdatum = new Date();
 		Student student1 = new Student(1, "micky", "mouse", geburtsdatum, "entenhausen", "heimadresse", 1.5);
 		Kurs kurs1 = new Kurs("kurs1", 2011, "Angewandte Informatik");
+		dhbw.getDHBW().addKurs(kurs1);
 		kurs1.addStudent(student1);
 		
 		//sollte funktionieren
