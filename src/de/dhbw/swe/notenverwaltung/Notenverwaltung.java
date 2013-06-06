@@ -44,7 +44,7 @@ public class Notenverwaltung {
 					System.out.println("Die Noten wurden erfolgreich eingetragen/geändert.");
 					
 				}catch(InvalidParameterException ipe){
-					System.out.println("Die Noten liegen nicht im gültigen Bereich. FC: NV046" + ipe.getMessage());
+					System.out.println("Die Noten liegen nicht im gültigen Bereich. FC: NV046");
 					System.out.println("Bitte versuchen Sie es erneut.");
 				}				
 			}
