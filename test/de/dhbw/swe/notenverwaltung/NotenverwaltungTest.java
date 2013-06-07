@@ -43,6 +43,8 @@ public class NotenverwaltungTest{
 		DHBW.getDHBW().addKurs(kurs1);
 		kurs1.addStudent(student1);
 		
+	//1. Funktion notenEintragen(int matrikelnummer, String unitname, double note)
+		
 	//TrueTrueTrue -> TTT (bezieht sich auf die Richtigkeit der Eingabewerte)
 		notenverwaltung.notenEintragen(1111,"Statistik", 4.0);
 		assertEquals(4.0, student1.getStudienplan().findUnitByName("Statistik").getNote(), 0.01);
@@ -89,11 +91,35 @@ public class NotenverwaltungTest{
 		assertEquals("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer "+
 				"nicht korrekt. FC: NV032\r\n", outContent.toString());
 		
+	//2. Funktion notenEintragen(int matrikelnummer, String unitname, boolean bestanden)
+		
+	//TrueTrueTrue -> TTT (bezieht sich auf die Richtigkeit der Eingabewerte)
+			notenverwaltung.notenEintragen(1111,"Compilerbauwerkzeuge", true);
+			assertTrue(student1.getStudienplan().findUnitByName("Compilerbauwerkzeuge").isBestanden());
+			notenverwaltung.notenEintragen(1111,"Compilerbauwerkzeuge", false);
+			assertFalse(student1.getStudienplan().findUnitByName("Compilerbauwerkzeuge").isBestanden());
+		//TFT		
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			notenverwaltung.notenEintragen(1111,"XYZ", true);
+			assertEquals("Die Unit konnte im System nicht gefunden werden. FC: NV076\r\n", outContent.toString());
+		//FTT
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			notenverwaltung.notenEintragen(99999999,"Compilerbauwerkzeuge", true);
+			assertEquals("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer "+
+					"nicht korrekt. FC: NV070\r\n", outContent.toString());
+		//FFT
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			notenverwaltung.notenEintragen(99999999,"XYZ", true);
+			assertEquals("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer "+
+					"nicht korrekt. FC: NV070\r\n", outContent.toString());
 	}
 
 	
 	/**
-	 * 
+	 * Tests zum Auslesen der Noten
 	 * 
 	 * @author Hanne Nobis
 	 */
@@ -120,12 +146,6 @@ public class NotenverwaltungTest{
 		notenverwaltung.notenEintragen(1113,"Grundlagen der Datenbanken", 3.0);
 		notenverwaltung.notenEintragen(1114,"Grundlagen der Datenbanken", 4.0);
 		
-		
-//		unbenotete Prüfungsleistungen	
-		notenverwaltung.notenEintragen(1112,"Compilerbauwerkzeuge", 2.0);
-		notenverwaltung.notenEintragen(1113,"Compilerbauwerkzeuge", 3.0);
-		notenverwaltung.notenEintragen(1114,"Compilerbauwerkzeuge", 4.0);
-		
 		//TrueTrue -> TT (bezieht sich auf die Richtigkeit der Eingabewerte)
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
@@ -150,12 +170,32 @@ public class NotenverwaltungTest{
 			System.setOut(new PrintStream(outContent));
 			notenverwaltung.notenAbfragen("kurs", "XXX");
 			assertEquals("Der Kurs konnte im System nicht gefunden werden. FC: NV068\r\n", outContent.toString());
+		
+			
+	//unbenotete Prüfungsleistungen	
+		notenverwaltung.notenEintragen(1112,"Compilerbauwerkzeuge", true);
+		notenverwaltung.notenEintragen(1113,"Compilerbauwerkzeuge", true);
+		notenverwaltung.notenEintragen(1114,"Compilerbauwerkzeuge", false);
+				
+		//TrueTrue -> TT (bezieht sich auf die Richtigkeit der Eingabewerte)
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			notenverwaltung.notenAbfragen("kursvoll", "Compilerbauwerkzeuge");
+			assertEquals("Student: Tick Duck, 1112 | Unit: Compilerbauwerkzeuge | Benotung: bestanden\r\n" + 
+						"Student: Trick Duck, 1113 | Unit: Compilerbauwerkzeuge | Benotung: bestanden\r\n" + 
+						"Student: Track Duck, 1114 | Unit: Compilerbauwerkzeuge | Benotung: nicht bestanden\r\n", outContent.toString());	
+		      
+		//FT
+			outContent = new ByteArrayOutputStream();
+			System.setOut(new PrintStream(outContent));
+			notenverwaltung.notenAbfragen("kurs", "Compilerbauwerkzeuge");
+			assertEquals("Der Kurs konnte im System nicht gefunden werden. FC: NV068\r\n", outContent.toString());	   
 			
 	}
 	
 	
 	/**
-	 * 
+	 * Tests zum Auslesen der Noten
 	 * 
 	 * @author Hanne Nobis
 	 */
@@ -168,16 +208,19 @@ public class NotenverwaltungTest{
 		DHBW.getDHBW().addKurs(kursZ);
 		kursZ.addStudent(studentZ);
 		notenverwaltung.notenEintragen(2222,"Digitaltechnik", 2.9);
+		notenverwaltung.notenEintragen(2222, "Compilerbauwerkzeuge", true);
 		
 		//TrueTrue -> TT (bezieht sich auf die Richtigkeit der Eingabewerte)
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
 			notenverwaltung.notenAbfragen(2222, "Digitaltechnik");
-			assertEquals("Student: Minnie Mouse, 2222 | Unit: Digitaltechnik | Benotung: 2.9\r\n", outContent.toString());
+			notenverwaltung.notenAbfragen(2222, "Compilerbauwerkzeuge");			
+			assertEquals("Student: Minnie Mouse, 2222 | Unit: Digitaltechnik | Benotung: 2.9\r\n"+
+					"Student: Minnie Mouse, 2222 | Unit: Compilerbauwerkzeuge | Benotung: bestanden\r\n", outContent.toString());
 		//TF
 			outContent = new ByteArrayOutputStream();
 			System.setOut(new PrintStream(outContent));
-			notenverwaltung.notenAbfragen(2222, "jdj");
+			notenverwaltung.notenAbfragen(2222, "jdj");			
 			assertEquals("Student: Minnie Mouse, 2222 | Unit konnte im System nicht gefunden werden. FC: NV116\r\n", outContent.toString());
 		//FT
 			outContent = new ByteArrayOutputStream();
@@ -268,6 +311,7 @@ public class NotenverwaltungTest{
 	
 	
 	/**
+	 * kurze Hilfsmethode zum schnellen Füllen des gesamten Studienplans
 	 * 
 	 * @param studienplan
 	 * @author Michael Strobel
