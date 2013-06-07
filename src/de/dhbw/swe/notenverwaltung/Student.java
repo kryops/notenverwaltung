@@ -302,7 +302,14 @@ public class Student {
 	}
 	
 	
+	/**
+	 * @return Bachelornote, auf eine Nachkommastelle gerundet
+	 */
 	public double getBachelornote() {
+		return ((double)Math.round(bachelornote * 10) / 10);
+	}
+	
+	public double getExactBachelornote() {
 		return bachelornote;
 	}
 	
