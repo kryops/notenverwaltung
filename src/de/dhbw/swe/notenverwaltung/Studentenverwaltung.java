@@ -52,14 +52,17 @@ public class Studentenverwaltung {
 						if(student.isImmatrikuliert()){
 							kurs.addStudent(student);
 						}else{
-							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
-									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden. FC: SV056");
+							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann " + 
+									"daher dem Kurs " + kurs.getKursname() + " nicht hinzugefügt werden. FC: SV056");
 						}			
 					}	
 				}
 				dhbw.addKurs(kurs);
 				System.out.println("Der Kurs wurde angelegt.");
+			}else{
+				System.out.println("Die angegebenen Informationen sind fehlerhaft. Bitte stellen Sie sicher, dass der Kursname noch nicht vergeben wurde. FC: SV062");
 			}
+			
 		}else{
 			System.out.println("Bitte verringern Sie die Anzahl der Studenten auf maximal 20. FC: SV063");
 			
