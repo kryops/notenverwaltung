@@ -119,18 +119,17 @@ public class Studentenverwaltung {
 		if((kurs != null) && (studenten != null)){
 			//Hinzufügen der übergebenen Studenten
 			if(aktion == 1){
-				if(kurs.getStudenten().size() == 20){
-					System.out.println("Die maximale Teilnehmerzahl des Kurses ist bereits erreicht. FC: SV119");
-					
-				}else if((kurs.getStudenten().size() + studenten.size()) < 21){
+				if((kurs.getStudenten().size() + studenten.size()) < 21){
 					for(Student student : studenten ){
 						if(student.isImmatrikuliert()){
 							kurs.addStudent(student);
+							
 						}else{
 							System.out.println("Der Student " + student.getMatrikelnummer() + " ist nicht immatrikuliert und kann" + 
 									"daher dem Kurs " + kurs.getKursname() + "nicht hinzugefügt werden. FC: SV127");
 						}	
 					}
+					
 				}else{
 					System.out.println("Bitte verringern Sie die Anzahl der hinzuzufügenden Studenten, so dass" + 
 							" die maximale Kursgröße (20Teilnehmer) nicht überschritten wird. FC: SV132");
