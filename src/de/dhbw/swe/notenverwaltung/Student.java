@@ -309,6 +309,9 @@ public class Student {
 		return ((double)Math.round(bachelornote * 10) / 10);
 	}
 	
+	/**
+	 * @return exakt berechnete Bachelornote, nicht gerundet
+	 */
 	public double getExactBachelornote() {
 		return bachelornote;
 	}
