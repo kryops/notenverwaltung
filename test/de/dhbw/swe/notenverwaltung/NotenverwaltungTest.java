@@ -120,10 +120,11 @@ public class NotenverwaltungTest{
 		notenverwaltung.notenEintragen(1113,"Grundlagen der Datenbanken", 3.0);
 		notenverwaltung.notenEintragen(1114,"Grundlagen der Datenbanken", 4.0);
 		
+		
 //		unbenotete Prüfungsleistungen	
-//		notenverwaltung.notenEintragen(1112,"Compilerbauwerkzeuge", 2.0);
-//		notenverwaltung.notenEintragen(1113,"Compilerbauwerkzeuge", 3.0);
-//		notenverwaltung.notenEintragen(1114,"Compilerbauwerkzeuge", 4.0);
+		notenverwaltung.notenEintragen(1112,"Compilerbauwerkzeuge", 2.0);
+		notenverwaltung.notenEintragen(1113,"Compilerbauwerkzeuge", 3.0);
+		notenverwaltung.notenEintragen(1114,"Compilerbauwerkzeuge", 4.0);
 		
 		//TrueTrue -> TT (bezieht sich auf die Richtigkeit der Eingabewerte)
 			outContent = new ByteArrayOutputStream();
