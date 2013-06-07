@@ -76,8 +76,41 @@ public class StudentenverwaltungTest{
 		
 	}
 	
+	
 	@Test
 	public void kurseBearbeiten1Test(){
+		//kursBearbeiten(String kursname, String studiengangsleiter, String raum)
+		Student studentin = new Student(1122, "vorname", "nachname",  new Date(), "geburtsort", "heimadresse", 1.0);
+		Kurs tinf = new Kurs("tinf", 2012, "AI");
+		DHBW.getDHBW().addKurs(tinf);
+		tinf.addStudent(studentin);
+		tinf.setStudiengangsleiter("abc");
+		tinf.setRaum("111");
+		
+		//gültige Werte
+		sv.kursBearbeiten("tinf", "defg", "222");
+		assertEquals("defg", tinf.getStudiengangsleiter());
+		assertEquals("222", tinf.getRaum());
+		
+		//Kursname falsch - Fehler
+		contentOut = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(contentOut));
+		sv.kursBearbeiten("tinf11", "defg", "222");
+		assertEquals("Zu dem angegebenen Kursnamen wurde kein Kurs gefunden. FC: SV093\r\n", contentOut.toString());
+		
+		//Kurs ohne Daten ändern
+		contentOut = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(contentOut));
+		sv.kursBearbeiten("tinf", null, null);
+		assertEquals("defg", tinf.getStudiengangsleiter());
+		assertEquals("222", tinf.getRaum());
+		
+		
+		
+	}
+	
+	@Test
+	public void kurseBearbeiten2Test(){
 		Student student1 = new Student(2345, "vorname1", "nachname1", new Date(), "geburtsort1", "heimadresse1", 1.5);
 		Student student2 = new Student(3456, "vorname2", "nachname2", new Date(), "geburtsort2", "heimadresse2", 1.5);
 		Student student3 = new Student(4567, "vorname3", "nachname3", new Date(), "geburtsort3", "heimadresse3", 1.5);
@@ -168,18 +201,10 @@ public class StudentenverwaltungTest{
 //				studentenliste2.add(studentY);
 //				sv.kurseErstmalsEinteilen("Kurs2", 2012, "WI", "Studiengangsleiter", "Raum", studentenliste2);
 //				assertEquals("Der Student 7777 ist nicht immatrikuliert und kann daher dem Kurs Kurs4 nicht hinzugefügt werden. FC: SV056\r\n", contentOut.toString());
-			
-		
-		
 		
 	}
 	
-	@Test
-	public void kurseBearbeiten2Test(){
 		
-		
-	}
-	
 	@Test
 	public void studentAnlegenTest(){
 		
