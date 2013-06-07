@@ -15,7 +15,12 @@ public class NotenverwaltungTest{
 	private  ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private  ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 	
-	
+	/**
+	 * Vorbereitung, die für alle Testfälle getroffen wird:
+	 * Die Konsolenausgabe wird abgefangen und mit den erwarteten Ausgaben verglichen.
+	 * 
+	 * @author Hanne Nobis
+	 */
 	@Before
 	public void initialization(){
 	    System.setOut(new PrintStream(outContent));

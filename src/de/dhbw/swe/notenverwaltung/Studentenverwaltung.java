@@ -162,7 +162,7 @@ public class Studentenverwaltung {
 	/**
 	 * F40 :
 	 * Der Student kann hier erstmalig angelegt werden. Er wird automatisch immatrikuliert, 
-	 * sofern die notwendigen Daten vollstänidg sind.
+	 * sofern die notwendigen Daten vollständig sind.
 	 * Notwendige Daten (für Immatrikulation): 
 	 * 
 	 * @param matrikelnummer
@@ -172,6 +172,7 @@ public class Studentenverwaltung {
 	 * @param geburtsort
 	 * @param heimadresse
 	 * @param abiturnote
+	 * @param kursname
 	 * 
 	 * 
 	 * Die folgenden Daten sind optional, bei nicht verwendeten int sollte eine '0' eingetragen werden,
@@ -190,13 +191,13 @@ public class Studentenverwaltung {
 	 */
 	public void studentAnlegen(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort,
 			String heimadresse, double abiturnote, String email, String telefonnummer, int abiturjahrgang, String abiturort,
-			String studentenadresse, String firmenname, String ausbildungsleiter, String studiengang, int jahrgang){
+			String studentenadresse, String firmenname, String ausbildungsleiter, String studiengang, int jahrgang, String kursname){
 		
 		DHBW dhbw = DHBW.getDHBW();
 		
 		if((matrikelnummer != 0) && (dhbw.findStudentByMatrikelnummer(matrikelnummer) == null) && (vorname != null) && (nachname != null) && (geburtsdatum != null) && (geburtsort != null)
 				&& (heimadresse != null) && (abiturnote != 0)){
-			new Student(matrikelnummer, vorname, nachname, geburtsdatum, geburtsort, heimadresse, abiturnote);
+			dhbw.findKursByName(kursname).addStudent(new Student(matrikelnummer, vorname, nachname, geburtsdatum, geburtsort, heimadresse, abiturnote));
 			
 			if(zusatzStudentenDaten(matrikelnummer, email, telefonnummer, abiturjahrgang, abiturort, studentenadresse, firmenname, ausbildungsleiter, 
 					studiengang, jahrgang)){
@@ -286,7 +287,7 @@ public class Studentenverwaltung {
 				System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV283");
 			}
 		}else{
-			System.out.println("Entweder der angegebenen Matrikelnummer konnte kein Student zugeordnet werden oder der Student ist" + 
+			System.out.println("Entweder der angegebenen Matrikelnummer konnte kein Student zugeordnet werden oder der Student ist " + 
 					"nicht immatrikuliert. FC: SV287");
 			
 		}
@@ -315,13 +316,13 @@ public class Studentenverwaltung {
 			}
 			//AUSGABE
 			System.out.println("Matr.-Nr.: " + matrikelnummer + "  Name: " + student.getVorname() + " " + student.getNachname());
-			System.out.println("Studium  Studiengang: " + student.getStudiengang() + " Jahrgang: " + student.getJahrgang() + immatrikulationsstatus);
-			System.out.println("Geburtsdaten: " + student.getGeburtsort() + " " + student.getGeburtsdatum());
-			System.out.println("Kontaktdaten  Email " + student.getEmail() + " Tel." + student.getTelefonnummer());
-			System.out.println("Heimatadresse: " + student.getHeimadresse());
-			System.out.println("Studentnadresse: " + student.getStudentenadresse());
-			System.out.println("Abitur  Abschlussnote: " + student.getAbiturnote() + " " + student.getAbiturort() + " Jahrgang: " + student.getAbiturjahrgang());
-			System.out.println("Unternehmen  Firma: " + student.getFirmenname() + " Ausbildungsleiter: " + student.getAusbildungsleiter());
+			System.out.println(" | Studium  Studiengang: " + student.getStudiengang() + "  Jahrgang: " + student.getJahrgang() + " " + immatrikulationsstatus);
+			System.out.println(" | Geburtsdaten: " + student.getGeburtsort() + " " + student.getGeburtsdatum());
+			System.out.println(" | Kontaktdaten  Email " + student.getEmail() + "  Tel. " + student.getTelefonnummer());
+			System.out.println(" | Heimatadresse: " + student.getHeimadresse());
+			System.out.println(" | Studentenadresse: " + student.getStudentenadresse());
+			System.out.println(" | Abitur  Abschlussnote: " + student.getAbiturnote() + " " + student.getAbiturort() + "  Jahrgang: " + student.getAbiturjahrgang());
+			System.out.println(" | Unternehmen  Firma: " + student.getFirmenname() + "  Ausbildungsleiter: " + student.getAusbildungsleiter());
 			
 		}else{
 			System.out.println("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV324");
@@ -347,12 +348,18 @@ public class Studentenverwaltung {
 		DHBW dhbw = DHBW.getDHBW();
 		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
 		
-		if((student != null) && student.isImmatrikuliert()){
-			student.setImmatrikuliert(false); 
-			student.getKurs().removeStudent(student);			
-			System.out.println("Der Student " + matrikelnummer + " wurde exmatrikuliert.");			
+		if(student != null){
+			if(student.isImmatrikuliert()){
+				student.setImmatrikuliert(false); 
+				student.getKurs().removeStudent(student);			
+				System.out.println("Der Student " + matrikelnummer + " wurde exmatrikuliert.");			
+			}else{
+				System.out.println("Der Student " + matrikelnummer + " wurde bereits exmatrikuliert. FC: SV358");
+			}
+			
 		}else{
-			System.out.println("Der Student " + matrikelnummer + " konnte nicht exmatrikuliert werden. FC: SV352");
+			System.out.println("Der Student " + matrikelnummer + " konnte nicht gefunden werden. Er wurde möglicherweise bereits exmatrikuliert. FC: SV362");
+			
 		}
 		
 	}
