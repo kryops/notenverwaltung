@@ -105,8 +105,6 @@ public class StudentenverwaltungTest{
 		assertEquals("defg", tinf.getStudiengangsleiter());
 		assertEquals("222", tinf.getRaum());
 		
-		
-		
 	}
 	
 	@Test
@@ -207,7 +205,28 @@ public class StudentenverwaltungTest{
 		
 	@Test
 	public void studentAnlegenTest(){
-		
+		//studentAnlegen(int matrikelnummer, String vorname, String nachname, Date geburtsdatum, String geburtsort,
+//		String heimadresse, double abiturnote, String email, String telefonnummer, int abiturjahrgang, String abiturort,
+//		String studentenadresse, String firmenname, String ausbildungsleiter, String studiengang, int jahrgang)
+		Date date = new Date();
+		sv.studentAnlegen(9876, "Vorname", "Nachname", date, "Geburtsort", "Heimadresse", 2.3, "Email", "Telefonnummer",
+							2010, "Abiturort", "Studentenadresse", "Firmenname", "Ausbildungsleiter", "Studiengang", 2011);
+		Student studentine = dhbw.findStudentByMatrikelnummer(9876);
+		assertEquals("Vorname", studentine.getVorname());
+		assertEquals("Nachname", studentine.getNachname());
+		assertEquals(date, studentine.getGeburtsdatum());
+		assertEquals("Geburtsort", studentine.getGeburtsort());
+		assertEquals("Heimadresse", studentine.getHeimadresse());
+		assertTrue(2.3 == studentine.getAbiturnote());
+		assertEquals("Email", studentine.getEmail());
+		assertEquals("Telefonnummer", studentine.getTelefonnummer());
+		assertTrue(2010 == studentine.getAbiturjahrgang());
+		assertEquals("Abiturort", studentine.getAbiturort());
+		assertEquals("Studentenadresse", studentine.getStudentenadresse());
+		assertEquals("Firmenname", studentine.getFirmenname());
+		assertEquals("Ausbildungsleiter", studentine.getAusbildungsleiter());
+		assertEquals("Studiengang", studentine.getStudiengang());
+		assertTrue(2011 == studentine.getJahrgang());
 		
 	}
 	
