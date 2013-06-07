@@ -97,7 +97,7 @@ public class NotenverwaltungTest{
 	 * 
 	 * @author Hanne Nobis
 	 */
-//TODO bestanden/nicht bestanden
+
 	@Test
 	public void notenAbfragen1Test(){
 		//Kurs mit Noten versehen
@@ -159,7 +159,7 @@ public class NotenverwaltungTest{
 	 * 
 	 * @author Hanne Nobis
 	 */
-//TODO bestanden/nicht bestanden
+
 	@Test
 	public void notenAbfragen2Test(){
 		Date geburtsdatumZ = new Date();

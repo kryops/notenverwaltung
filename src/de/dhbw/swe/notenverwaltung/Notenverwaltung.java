@@ -51,31 +51,6 @@ public class Notenverwaltung {
 		}
 	}
 	
-	public void notenEintragen(int matrikelnummer, String unitname, boolean bestanden){
-		DHBW dhbw = DHBW.getDHBW();
-		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
-		
-		if (student == null){
-			System.out.println("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer nicht korrekt. FC: NV032");
-			
-		}else{
-			Unit unit = student.getStudienplan().findUnitByName(unitname);
-			
-			if(unit == null){
-				System.out.println("Die Unit konnte im System nicht gefunden werden. FC: NV038");
-				
-			}else{
-				try {
-					unit.setNote(note);	
-					System.out.println("Die Noten wurden erfolgreich eingetragen/geändert.");
-					
-				}catch(InvalidParameterException ipe){
-					System.out.println("Die Noten liegen nicht im gültigen Bereich. FC: NV046");
-					System.out.println("Bitte versuchen Sie es erneut.");
-				}				
-			}
-		}
-	}
 	
 	/** F20 : 
 	 * Zur Ausgabe der Noten eines ganzen Kurses.
