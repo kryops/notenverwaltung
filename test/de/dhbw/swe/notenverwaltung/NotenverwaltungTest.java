@@ -201,7 +201,6 @@ public class NotenverwaltungTest{
 	 * 
 	 * @author Hanne Nobis
 	 */
-//TODO Problem mit dem Runden lösen
 	@Test
 	public void bachelorNotenBerechnenTest(){
 	//Kurs mit Noten versehen
@@ -244,10 +243,10 @@ public class NotenverwaltungTest{
 		outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		notenverwaltung.bachelornotenBerechnen(kursSimpson);
-		assertEquals("Student: Homer Simpson, 3333 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Marge Simpson, 3334 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Bart Simpson, 3335 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Lisa Simpson, 3336 | Bachelornote: 2.1651685393258426\r\n" +
+		assertEquals("Student: Homer Simpson, 3333 | Bachelornote: 2.2\r\n" +
+				"Student: Marge Simpson, 3334 | Bachelornote: 2.2\r\n" +
+				"Student: Bart Simpson, 3335 | Bachelornote: 2.2\r\n" +
+				"Student: Lisa Simpson, 3336 | Bachelornote: 2.2\r\n" +
 				"Bachelornote wurde nicht berechnet. FC: NV155\r\n", outContent.toString());
 		
 	//fehlenden Studenten ergänzen	
@@ -259,11 +258,11 @@ public class NotenverwaltungTest{
 		outContent = new ByteArrayOutputStream();
 		System.setOut(new PrintStream(outContent));
 		notenverwaltung.bachelornotenBerechnen(kursSimpson);
-		assertEquals("Student: Homer Simpson, 3333 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Marge Simpson, 3334 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Bart Simpson, 3335 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Lisa Simpson, 3336 | Bachelornote: 2.1651685393258426\r\n" +
-				"Student: Meggie Simpson, 3337 | Bachelornote: 2.1651685393258426\r\n", outContent.toString());
+		assertEquals("Student: Homer Simpson, 3333 | Bachelornote: 2.2\r\n" +
+				"Student: Marge Simpson, 3334 | Bachelornote: 2.2\r\n" +
+				"Student: Bart Simpson, 3335 | Bachelornote: 2.2\r\n" +
+				"Student: Lisa Simpson, 3336 | Bachelornote: 2.2\r\n" +
+				"Student: Meggie Simpson, 3337 | Bachelornote: 2.2\r\n", outContent.toString());
 
 	}
 	

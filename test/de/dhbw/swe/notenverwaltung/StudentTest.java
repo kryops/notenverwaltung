@@ -185,7 +185,8 @@ public class StudentTest {
 		 */
 		
 		assertTrue(student.isStudiumAbgeschlossen());
-		assertEquals(2.17, student.getBachelornote(), 0.01);
+		assertEquals(2.17, student.getExactBachelornote(), 0.01);
+		assertEquals(2.2, student.getBachelornote(), 0.01);
 	}
 	
 	

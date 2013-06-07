@@ -329,30 +329,30 @@ public class StudentenverwaltungTest{
 	/**
 	 * Wird der Student bei "Anzeigen" richtig ausgegeben?
 	 * 
-	 * @auth
+	 * @author Hanne Nobis
 	 */
-//TODO Problem mit Datum beheben!
-//	@Test
-//	public void studentAnzeigenTest(){
-//		Student studi = new Student(667788, "vor", "nach", new Date(), "geburt", "heimat", 2.5);
-//		
-//		Kurs kursi = new Kurs("kursi", 2012, "AI");
-//		DHBW.getDHBW().addKurs(kursi);
-//		kursi.addStudent(studi);
-//		
-//		sv.studentAnzeigen(667788);
-//		assertEquals("Matr.-Nr.: 667788  Name: vor nach\r\n | Studium  Studiengang: null  Jahrgang: 0 immatrikuliert\r\n" +
-//					" | Geburtsdaten: geburt Fri Jun 07 12:35:56 CEST 2013\r\n | Kontaktdaten  Email null  Tel. null\r\n" +
-//					" | Heimatadresse: heimat\r\n | Studentenadresse: null\r\n" +
-//					" | Abitur  Abschlussnote: 2.5 null  Jahrgang: 0\r\n | Unternehmen  Firma: null  Ausbildungsleiter: null", 
-//					contentOut.toString());
-//		
-//		contentOut = new ByteArrayOutputStream();
-//		System.setOut(new PrintStream(contentOut));
-//		sv.studentAnzeigen(998877);
-//		assertEquals("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV324\r\n", contentOut.toString());
-//		
-//	}
+	@Test
+	public void studentAnzeigenTest(){
+		Date geburtsdatum = new Date();
+		Student studi = new Student(667788, "vor", "nach", geburtsdatum, "geburt", "heimat", 2.5);
+		
+		Kurs kursi = new Kurs("kursi", 2012, "AI");
+		DHBW.getDHBW().addKurs(kursi);
+		kursi.addStudent(studi);
+		
+		sv.studentAnzeigen(667788);
+		assertEquals("Matr.-Nr.: 667788  Name: vor nach\r\n | Studium  Studiengang: null  Jahrgang: 0 immatrikuliert\r\n" +
+					" | Geburtsdaten: geburt " + geburtsdatum.toString() + "\r\n | Kontaktdaten  Email null  Tel. null\r\n" +
+					" | Heimatadresse: heimat\r\n | Studentenadresse: null\r\n" +
+					" | Abitur  Abschlussnote: 2.5 null  Jahrgang: 0\r\n | Unternehmen  Firma: null  Ausbildungsleiter: null\r\n", 
+					contentOut.toString());
+		
+		contentOut = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(contentOut));
+		sv.studentAnzeigen(998877);
+		assertEquals("Der angegebenen Matrikelnummer konnte kein Student zugeordnet werden. FC: SV324\r\n", contentOut.toString());
+		
+	}
 	
 	
 	/**
