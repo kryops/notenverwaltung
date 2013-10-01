@@ -51,6 +51,38 @@ public class Notenverwaltung {
 		}
 	}
 	
+	/** F20 : 
+	 * Diese Funktion kann Noten für einen Studenten
+	 * komplett neu eintragen und auch bearbeiten.
+	 * Hier nur für bestanden, nicht bestanden
+	 * 
+	 * @param matrikelnummer 
+	 * @param unitname 
+	 * @param bestanden 
+	 * 
+	 * @author Hanne Nobis
+	 */
+	public void notenEintragen(int matrikelnummer, String unitname, boolean bestanden){
+		DHBW dhbw = DHBW.getDHBW();
+		Student student = dhbw.findStudentByMatrikelnummer(matrikelnummer);
+		
+		if (student == null){
+			System.out.println("Der Student konnte im System nicht gefunden werden. Möglicherweise ist die Matrikelnummer nicht korrekt. FC: NV070");
+			
+		}else{
+			Unit unit = student.getStudienplan().findUnitByName(unitname);
+			
+			if(unit == null){
+				System.out.println("Die Unit konnte im System nicht gefunden werden. FC: NV076");
+				
+			}else{
+				unit.setGewichtung(0);	
+				unit.setBestanden(bestanden);
+				System.out.println("Das Ergebnis wurde erfolgreich eingetragen/geändert.");			
+			}
+		}
+	}
+	
 	
 	/** F20 : 
 	 * Zur Ausgabe der Noten eines ganzen Kurses.
